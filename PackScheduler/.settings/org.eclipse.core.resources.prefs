@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//test-files/actual_student_records.txt=Cp1252
+encoding//test-files/duplicate_records.txt=Cp1252
+encoding//test-files/expected_full_student_records.txt=Cp1252
+encoding//test-files/expected_student_records.txt=Cp1252
+encoding//test-files/invalid_student_records.txt=Cp1252
+encoding//test-files/student_records.txt=Cp1252

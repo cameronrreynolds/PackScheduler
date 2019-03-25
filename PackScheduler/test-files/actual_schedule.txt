@@ -1,0 +1,5 @@
+CSC230,C and Software Tools,001,3,dbsturgi,MW,1145,1300
+CSC226,Discrete Mathematics for Computer Scientists,001,3,tmbarnes,MWF,935,1025
+CSC216,Programming Concepts - Java,601,4,jep,A
+CSC116,Intro to Programming - Java,003,3,tbdimitr,TH,1120,1310
+Lunch,MTWHF,1315,1345,1,Da bois

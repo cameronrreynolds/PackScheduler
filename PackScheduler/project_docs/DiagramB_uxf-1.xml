@@ -1,0 +1,209 @@
+<diagram program="umletino" version="14.3.0"><zoom_level>10</zoom_level><element><id>UMLPackage</id><coordinates><x>0</x><y>0</y><w>470</w><h>720</h></coordinates><panel_attributes>edu.ncsu.csc216.pack_scheduler.course
+--
+bg=orange
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>40</y><w>270</w><h>240</h></coordinates><panel_attributes>/Activity/
+--
+_-UPPER_TIME:int = 2400_
+_-UPPER_HOUR:int = 60_
+-title:String
+-meetingDays:String
+-startTime:int
+-endTime:int
+--
++Activity(title:String,meetingDays:
+               String,startTime:int,endTime:int)
++setActivityTime(startTime:int, endTime:int):void
++getMeetingString():String
+/+getShortDisplayArray():String[][]/
+/+getLongDisplayArray():String[][]/
+/+isDuplicate(activity:Activity):boolean/
++checkConflict(activity:Activity):void
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>540</x><y>0</y><w>440</w><h>200</h></coordinates><panel_attributes>edu.ncsu.csc216_pack_scheduler.io
+--
+bg=red
+group=3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>300</y><w>210</w><h>70</h></coordinates><panel_attributes>&lt;&lt;interface&gt;&gt;
+Conflict
+--
+--
+/+checkConflict(activity:Activity):void/
+
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>250</x><y>310</y><w>210</w><h>60</h></coordinates><panel_attributes>ConflictException
+--
+--
++ConflictException(message:String)
++ConflictException()
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>390</y><w>450</w><h>320</h></coordinates><panel_attributes>Course
+--
+_-SECTION_LENGTH: int = 3_
+_-MAX_NAME_LENGTH: int = 6_
+_-MIN_NAME_LENGTH: int = 4_
+_-MAX_CREDITS: int= 5_
+_-MIN_CREDITS: int = 1_
+-name:String
+-section:String
+-credits:int
+-instructorId:String
+--
++Course(name:String, title:String, section:String,
+              credits:int, instructorId:String, meetingDays:String
+              startTime:int, endTime:int)
++Course(name:String, title:String, section:String,
+               credits:int, instructorId:String, meetingDays:String)
+-setName(name:String)
++getShortDisplayArray(): String[]
++getLongDisplayArray():String[]
++isDuplicate(activity:Activity): boolean
++compareTo(course:Course): int
+
+group=1</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>220</x><y>270</y><w>30</w><h>140</h></coordinates><panel_attributes>lt=&lt;&lt;-
+group=1</panel_attributes><additional_attributes>10;10;10;120</additional_attributes></element><element><id>Relation</id><coordinates><x>80</x><y>130</y><w>110</w><h>190</h></coordinates><panel_attributes>lt=&lt;&lt;.
+group=1</panel_attributes><additional_attributes>10;170;10;10;90;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>26</y><w>420</w><h>80</h></coordinates><panel_attributes>CourseRecordIO
+--
+--
++readCourseRecords(fileName:String): SortedList&lt;Course&gt;
++writeCourseRecords(fileName:String, courses:SortedList&lt;Course&gt;):void
+group=3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>116</y><w>420</w><h>70</h></coordinates><panel_attributes>UserRecordIO
+--
+--
++readUserRecords(fileName:String): SortedList&lt;User&gt;
++writeUserRecords(fileName:String, students:SortedList&lt;User&gt;):void
+group=3</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>540</x><y>230</y><w>440</w><h>230</h></coordinates><panel_attributes>edu.ncsu.csc216_pack_scheduler.catalog
+--
+bg=yellow
+group=4</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>550</x><y>260</y><w>420</w><h>190</h></coordinates><panel_attributes>CourseCatalog
+--
+--
++CourseCatalog()
++newCourseCatalog(): void
++loadCoursesFromFile(fileName:String): void
++addCoursesToCatalog(name:String, title:String, section:String,
+                                      credits:int, instructorId:String, meetingDays:String
+                                      startTime:int, endTime:int): boolean
++removeCourseFromCatalog(name:String, section:String): boolean
++getCourseFromCatalog(name:String, section:String): Course
++getCourseCatalog(): String[][]
++saveCourseCatalog(fileName:String): void
+
+group=4</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>990</x><y>270</y><w>880</w><h>470</h></coordinates><panel_attributes>edu.ncsu.csc216_pack_scheduler.directory
+--
+bg=green
+group=6</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1220</x><y>310</y><w>420</w><h>190</h></coordinates><panel_attributes>/Directory/
+--
+_-HASH_ALGORITHM: String = SHA-256_
+--
++Directory()
++newDirectory(): void
++loadUsersFromFile(fileName:String): void
++addUser(firstName:String, lastName:String, id:String,
+                      email:String, password:String, maxCredits:int): boolean
++removeUser(id:String): boolean
++getUserDirectory(): String[][]
++saveUserDirectory(fileName:String): void
+--
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>1070</x><y>10</y><w>290</w><h>190</h></coordinates><panel_attributes>edu.ncsu.csc216_pack_scheduler.manager
+--
+bg=blue
+group=5</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1080</x><y>40</y><w>270</w><h>150</h></coordinates><panel_attributes>RegistrationManager
+--
+--
++RegistrationManager()
++getCourseCatalog(): CourseCatalog
++getStudentDirectory(): StudentDirectory
++getFacultyDirectory(): FacultyDirectory
++addToCourse(name:String, section:String): boolean
++removeFromCourse(name:String, section:String): boolean
++login(id:String, password:String): boolean
++logout(): boolean
+
+group=5</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>630</x><y>840</y><w>180</w><h>30</h></coordinates><panel_attributes>CourseCatalogPanel</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>650</x><y>950</y><w>160</w><h>30</h></coordinates><panel_attributes>PackSchedulerGUI</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>900</x><y>840</y><w>160</w><h>30</h></coordinates><panel_attributes>FacultyDirectoryPanel</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1300</x><y>960</y><w>160</w><h>30</h></coordinates><panel_attributes>StudentRegistrationPanel</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLPackage</id><coordinates><x>1980</x><y>100</y><w>710</w><h>570</h></coordinates><panel_attributes>edu.ncsu.csc216.pack_scheduler.user
+--
+bg=pink
+group=7</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1990</x><y>130</y><w>320</w><h>70</h></coordinates><panel_attributes>Registrar
+--
+--
++Registrar(firstName:String, lastName:String, id:String, 
+                  email:String, password:String)
+group=7</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1990</x><y>280</y><w>320</w><h>160</h></coordinates><panel_attributes>User
+--
+-firstName: String
+-lastName: String
+-id: String
+-email: String
+-password: String
+--
++User(firstName:String, lastName:String, id:String, 
+                  email:String, password:String)
+-setId(id:String): void
+group=7</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1990</x><y>510</y><w>320</w><h>150</h></coordinates><panel_attributes>Student
+--
+-maxCredits: int
+_+MAX_CREDITS:int = 18_
+--
++Student(firstName:String, lastName:String, id:String, 
+                  email:String, password:String, maxCredits:int)
++Student(firstName:String, lastName:String, id:String, 
+                  email:String, password:String)
++compareTo(student:Student): int
+group=7</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2110</x><y>190</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2120</x><y>430</y><w>30</w><h>100</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;80</additional_attributes></element><element><id>Relation</id><coordinates><x>1630</x><y>410</y><w>370</w><h>120</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..*
+studentDirectory</panel_attributes><additional_attributes>350;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1340</x><y>100</y><w>660</w><h>220</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+currentUser</panel_attributes><additional_attributes>640;200;410;130;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1290</x><y>180</y><w>120</w><h>130</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+directory</panel_attributes><additional_attributes>90;110;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>910</x><y>180</y><w>190</w><h>100</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+catalog</panel_attributes><additional_attributes>10;80;170;10</additional_attributes></element><element><id>Relation</id><coordinates><x>450</x><y>300</y><w>120</w><h>140</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..*
+catalog</panel_attributes><additional_attributes>10;120;100;10</additional_attributes></element><element><id>Relation</id><coordinates><x>680</x><y>860</y><w>130</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+panelCatalog</panel_attributes><additional_attributes>60;10;10;90</additional_attributes></element><element><id>Relation</id><coordinates><x>780</x><y>920</y><w>430</w><h>50</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+panelDirectory</panel_attributes><additional_attributes>410;10;10;30</additional_attributes></element><element><id>Relation</id><coordinates><x>800</x><y>950</y><w>520</w><h>60</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+panelStudentRegistration</panel_attributes><additional_attributes>500;30;10;20</additional_attributes></element><element><id>Relation</id><coordinates><x>670</x><y>440</y><w>140</w><h>420</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+catalog</panel_attributes><additional_attributes>110;10;10;400</additional_attributes></element><element><id>Relation</id><coordinates><x>1230</x><y>650</y><w>780</w><h>270</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..1
+studentDirectory</panel_attributes><additional_attributes>630;10;670;10;670;130;10;250</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1150</x><y>900</y><w>160</w><h>30</h></coordinates><panel_attributes>StudentDirectoryPanel</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>770</x><y>860</y><w>180</w><h>110</h></coordinates><panel_attributes>lt=&lt;-
+m1=0..n</panel_attributes><additional_attributes>160;10;10;90</additional_attributes></element><element><id>UMLPackage</id><coordinates><x>610</x><y>810</y><w>920</w><h>190</h></coordinates><panel_attributes>edu.ncsu.csc216_pack_scheduler.ui
+--
+bg=cyan</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>2350</x><y>270</y><w>320</w><h>190</h></coordinates><panel_attributes>Faculty
+--
+-maxCourses: int
+- taughtCourses: SortedList&lt;Course&gt;
+_+MAX_COURSES:int = 3_
+--
++Faculty(firstName:String, lastName:String, id:String, 
+                  email:String, password:String, maxCourses:int)
++Faculty(firstName:String, lastName:String, id:String, 
+                  email:String, password:String)
++compareTo(faculty:Faculty): int
+group=7</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>2300</x><y>350</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>Relation</id><coordinates><x>2100</x><y>410</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;50;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1440</x><y>540</y><w>420</w><h>180</h></coordinates><panel_attributes>StudentDirectory
+--
+_-HASH_ALGORITHM: String = SHA-256_
+--
++StudentDirectory()
++newStudentDirectory(): void
++loadStudentsFromFile(fileName:String): void
++addStudent(firstName:String, lastName:String, id:String,
+                      email:String, password:String, maxCredits:int): boolean
++removeStudent(id:String): boolean
++getStudentDirectory(): String[][]
++saveStudentDirectory(fileName:String): void
+--</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1000</x><y>540</y><w>420</w><h>180</h></coordinates><panel_attributes>FacultyDirectory
+--
+_-HASH_ALGORITHM: String = SHA-256_
+--
++FacultyDirectory()
++newFacultyDirectory(): void
++loadFacultyFromFile(fileName:String): void
++addFaculty(firstName:String, lastName:String, id:String,
+                      email:String, password:String, maxCredits:int): boolean
++removeFaculty(id:String): boolean
++getFacultyDirectory(): String[][]
++saveFacultyDirectory(fileName:String): void
+--
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>960</x><y>650</y><w>60</w><h>210</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>40;10;10;10;10;120;40;190</additional_attributes></element><element><id>Relation</id><coordinates><x>1320</x><y>490</y><w>140</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>120;10;10;50</additional_attributes></element><element><id>Relation</id><coordinates><x>1430</x><y>490</y><w>200</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;180;50</additional_attributes></element></diagram>
