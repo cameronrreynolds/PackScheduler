@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import java.util.EmptyStackException;
+
 /**
  * This class implements the functionality outlined in the stack interface using ArrayLists.
  * 
@@ -70,10 +72,13 @@ public class ArrayStack<E> implements Stack<E> {
 	}
 
 	/**
-	 * Returns the element off the top of the stack.
+	 * Returns the element off the top of the stack as long as it isn't empty.
 	 */
 	@Override
 	public E pop() {
+		if (this.size() == 0) {
+			throw new EmptyStackException();
+		}
 		return stack.remove(stack.size() - 1);
 	}
 
