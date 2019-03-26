@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import java.util.EmptyStackException;
+
 /**
  * This class implements the functionality outlined in the stack interface using ArrayLists.
  * 
@@ -7,7 +9,7 @@ package edu.ncsu.csc216.pack_scheduler.util;
  *
  * @param <E> Any element the stack will consist of.
  */
-public class ArrayStack<E> implements Stack<E> {
+public class LinkedStack<E> implements Stack<E> {
 	
 	/** The capacity of the stack. */
 	private int capacity;
@@ -17,7 +19,7 @@ public class ArrayStack<E> implements Stack<E> {
 	/**
 	 * Creates an ArrayStack with the default value of 0.
 	 */
-	public ArrayStack() {
+	public LinkedStack() {
 		this(0);
 	}
 	
@@ -26,7 +28,7 @@ public class ArrayStack<E> implements Stack<E> {
 	 * 
 	 * @param capacity The capacity of the ArrayStack.
 	 */
-    public ArrayStack(int capacity) {
+    public LinkedStack(int capacity) {
     	stack = new ArrayList<E>();
     	setCapacity(capacity);
     }
@@ -74,7 +76,11 @@ public class ArrayStack<E> implements Stack<E> {
 	 */
 	@Override
 	public E pop() {
-		return stack.remove(stack.size() - 1);
+		try {
+			return stack.remove(stack.size() - 1);
+		} catch (IndexOutOfBoundsException e) {
+			throw new EmptyStackException();
+		}
 	}
 
 }
