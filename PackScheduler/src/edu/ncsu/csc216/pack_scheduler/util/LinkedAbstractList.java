@@ -17,6 +17,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	private int size;
 	/** The maximum number of element available in the list */
 	private int capacity;
+	/** This ListNode references the last node in the list */
+	private ListNode back;
 
 	/**
 	 * Constructs a new, empty list with a given maximum number of elements.
@@ -157,6 +159,13 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		// check for front of the list and null front
 		if (index == 0) {
 			front = new ListNode(value, front);
+			if(size() == 0) {
+				back = front;
+			}
+		} else if(index == size()) {
+			ListNode insert = new ListNode(value, null);
+			back.next = insert;
+			back = insert;
 		} else {
 			ListNode current = front;
 			for (int i = 0; i < index - 1; i++) {
@@ -188,6 +197,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 			size--;
 			return ret;
 		}
+		
 
 		ListNode current = front;
 		for (int i = 0; i < index - 1; i++) {
@@ -195,6 +205,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		}
 		E ret = current.next.data;
 		current.next = current.next.next;
+		back = current.next;
 		size--;
 		return ret;
 	}

@@ -1,7 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
 /**
- * This class represents a queue implemented with a 
+ * This class represents a queue implemented with an 
  * array list. It has the functionality of adding, removing, 
  * and checking if it is empty. 
  * 
