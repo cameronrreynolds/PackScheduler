@@ -13,6 +13,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 
 	/** The ListNode representing the first element in the list. */
 	private ListNode front;
+	/** The ListNode representing the last element in the list. */
+	private ListNode back;
 	/** The number elements in the list. */
 	private int size;
 	/** The maximum number of element available in the list */

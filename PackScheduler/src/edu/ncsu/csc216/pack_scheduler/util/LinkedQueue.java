@@ -87,4 +87,11 @@ public class LinkedQueue<E> implements Queue<E> {
 		queue.setCapacity(capacity);
 	}
 
+	/**
+	 * Returns the capacity of the LinkedQueue.
+	 */
+	public int getCapacity() {
+		return this.capacity;
+	}
+	
 }

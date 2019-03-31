@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 
 /**
@@ -21,13 +22,14 @@ public class CourseRollTest {
 	private static final String ID = "mmurd";
 	private static final String EMAIL = "mmurd@ncsu.edu";
 	private static final String PASS = "password";
+	private static final Course c = new Course("CSC216", "Programming Concepts - Java", "001", 4, "sesmith5", 10, "A");
 	
 	/**
 	 * Testing the constructor method of the CourseRoll class
 	 */
 	@Test
 	public void testCourseRoll() {
-		CourseRoll cr = new CourseRoll(CAP);
+		CourseRoll cr = new CourseRoll(CAP, c);
 		assertNotNull(cr);
 		
 	}
@@ -37,12 +39,12 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testSetEnrollmentCap() {
-		CourseRoll cr = new CourseRoll(CAP);
+		CourseRoll cr = new CourseRoll(CAP,c);
 		assertEquals(cr.getEnrollmentCap(), CAP);
 		
 		CourseRoll cr1 = null;
 		try {
-			cr1 = new CourseRoll(MIN_CAP);
+			cr1 = new CourseRoll(MIN_CAP,c);
 			fail();
 		} catch(IllegalArgumentException e) {
 			assertNull(cr1);
@@ -50,7 +52,7 @@ public class CourseRollTest {
 		
 		CourseRoll cr2 = null;
 		try {
-			cr2 = new CourseRoll(MAX_CAP);
+			cr2 = new CourseRoll(MAX_CAP,c);
 			fail();
 		} catch(IllegalArgumentException e) {
 			assertNull(cr2);
@@ -62,7 +64,7 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testGetEnrollmentCap() {
-		CourseRoll cr = new CourseRoll(CAP);
+		CourseRoll cr = new CourseRoll(CAP,c);
 		assertEquals(cr.getEnrollmentCap(), CAP);
 	}
 
@@ -71,7 +73,7 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testEnroll() {
-		CourseRoll cr = new CourseRoll(CAP);
+		CourseRoll cr = new CourseRoll(CAP,c);
 		Student s = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASS);
 		cr.enroll(s);
 		assertEquals(49, cr.getOpenSeats());
@@ -91,7 +93,7 @@ public class CourseRollTest {
 			assertEquals(cr.getOpenSeats(), 49);
 		}
 		
-		CourseRoll maxedOut = new CourseRoll(10);
+		CourseRoll maxedOut = new CourseRoll(10,c);
 		maxedOut.enroll(s);
 		maxedOut.enroll(new Student("Jack", LAST_NAME, ID, EMAIL, PASS));
 		maxedOut.enroll(new Student("Jackie", LAST_NAME, ID, EMAIL, PASS));
@@ -116,7 +118,7 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testDrop() {
-		CourseRoll maxedOut = new CourseRoll(10);
+		CourseRoll maxedOut = new CourseRoll(10,c);
 		Student s = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASS);
 		maxedOut.enroll(s);
 		maxedOut.enroll(new Student("Jack", LAST_NAME, ID, EMAIL, PASS));
@@ -145,7 +147,7 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testGetOpenSeats() {
-		CourseRoll maxedOut = new CourseRoll(10);
+		CourseRoll maxedOut = new CourseRoll(10,c);
 		assertEquals(maxedOut.getOpenSeats(), 10);
 		Student s = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASS);
 		maxedOut.enroll(s);
@@ -175,7 +177,7 @@ public class CourseRollTest {
 	 */
 	@Test
 	public void testCanEnroll() {
-		CourseRoll maxedOut = new CourseRoll(10);
+		CourseRoll maxedOut = new CourseRoll(10,c);
 		Student s = new Student(FIRST_NAME, LAST_NAME, ID, EMAIL, PASS);
 		maxedOut.enroll(s);
 		maxedOut.enroll(new Student("Jack", LAST_NAME, ID, EMAIL, PASS));

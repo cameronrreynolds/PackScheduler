@@ -1,7 +1,9 @@
 package edu.ncsu.csc216.pack_scheduler.course.roll;
 
+import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedQueue;
 
 /**
  * Creates an Enrollment Process for students to enroll and drop from a Course
@@ -11,6 +13,7 @@ import edu.ncsu.csc216.pack_scheduler.util.LinkedAbstractList;
  *
  */
 public class CourseRoll {
+	
 	/** A LinkedAbstractList of Students in a certain Course */
 	private LinkedAbstractList<Student> roll;
 	/** The maximum number of Students allowed in a Course */
@@ -19,13 +22,15 @@ public class CourseRoll {
 	private static final int MIN_ENROLLMENT = 10;
 	/** The highest possible enrollmentCap */
 	private static final int MAX_ENROLLMENT = 250;
+	/** The waitlist for students trying to enroll in a course. */
+	private LinkedQueue<Student> waitlist = new LinkedQueue<Student>(10);
 
 	/**
 	 * Constructor of the CourseRoll Class
 	 * 
 	 * @param cap the maximum number of students allowed on the roll
 	 */
-	public CourseRoll(int cap) {
+	public CourseRoll(int cap, Course c) {
 		roll = new LinkedAbstractList<Student>(cap);
 		setEnrollmentCap(cap);
 	}
@@ -68,7 +73,7 @@ public class CourseRoll {
 	 * @param s the Student being enrolled
 	 */
 	public void enroll(Student s) {
-		if ((s == null) || (roll.size() == enrollmentCap)) {
+		if (s == null) {
 			throw new IllegalArgumentException();
 		}
 
@@ -77,9 +82,14 @@ public class CourseRoll {
 		if (canEnroll(s)) {
 			roll.add(s);
 		} else {
-			throw new IllegalArgumentException();
+			try {
+				waitlist.enqueue(s);
+			} catch (IllegalArgumentException e) {
+				throw new IllegalArgumentException();
+			}
 		}
 	}
+
 
 	/**
 	 * Drops a student from the Course
@@ -93,6 +103,7 @@ public class CourseRoll {
 		}
 
 		roll.remove(s);
+		roll.add(waitlist.dequeue());
 	}
 
 	/**
@@ -117,13 +128,38 @@ public class CourseRoll {
 			return false;
 		}
 		
+		if (waitlist.size() == waitlist.getCapacity()) {
+			return false;
+		}
+		
 		// student is already enrolled
 		for (int i = 0; i < roll.size(); i++) {
 			if (s.equals(roll.get(i))) {
 				return false;
 			}
 		}
+		
+		LinkedQueue<Student> newWaitlist = new LinkedQueue<Student>(10);
+		for (int i = 0; i < waitlist.size(); i++) {
+			Student student = waitlist.dequeue();
+			newWaitlist.enqueue(student);
+			if (student.equals(s)) {
+				return false;
+			}
+		}
 
+		waitlist = newWaitlist;
+		
 		return true;
 	}
+	
+	/**
+	 * Gives the number of students on the waitlist.
+	 * 
+	 * @return The number of students on the waitlist.
+	 */
+	public int getNumberOnWaitlist() {
+		return waitlist.size();
+	}
+	
 }
