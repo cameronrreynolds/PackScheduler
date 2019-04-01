@@ -46,7 +46,7 @@ public class ArrayStackTest {
 			stack.push("Third");
 			fail();
 		} catch (IllegalArgumentException e) {
-			
+			// do nothing test passed
 		}
 	}
 	
@@ -72,7 +72,7 @@ public class ArrayStackTest {
 			stack.pop();
 			fail();
 		} catch (EmptyStackException e) {
-		
+			// do nothing test passed
 		}
 	}
 	
