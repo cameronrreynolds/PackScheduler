@@ -2,6 +2,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 
+import java.util.NoSuchElementException;
+
 import org.junit.*;
 
 
@@ -64,7 +66,7 @@ public class ArrayQueueTest {
 			assertEquals("Second", queue.dequeue());
 			queue.dequeue();
 			fail();
-		} catch (IllegalArgumentException e) {
+		} catch (NoSuchElementException e) {
 			assertEquals("Queue is empty", e.getMessage());
 		}
 	}
