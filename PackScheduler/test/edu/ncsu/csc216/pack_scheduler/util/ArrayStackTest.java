@@ -21,7 +21,7 @@ public class ArrayStackTest {
 
 	@Test
 	public void testPush() {
-		LinkedStack<String> stack = new LinkedStack<String>(2);
+		ArrayStack<String> stack = new ArrayStack<String>(2);
 		try {
 			stack.push("First");
 			assertEquals("First", stack.pop());
@@ -49,7 +49,7 @@ public class ArrayStackTest {
 	
 	@Test
 	public void testPop() {
-		LinkedStack<String> stack = new LinkedStack<String>(10);
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		try {
 			stack.push("First");
 			stack.push("Second");
@@ -72,13 +72,13 @@ public class ArrayStackTest {
 	
 	@Test
 	public void testIsEmpty() {
-		LinkedStack<String> stack = new LinkedStack<String>(10);
+		ArrayStack<String> stack = new ArrayStack<String>(10);
 		assertEquals(0, stack.size());
 	}
 	
 	@Test
 	public void testSetCapacity() {
-		LinkedStack<String> stack = new LinkedStack<String>();
+		ArrayStack<String> stack = new ArrayStack<String>();
 		try {
 			stack.setCapacity(-1);
 			fail();

@@ -80,6 +80,7 @@ public class LinkedStackTest {
 	public void testSetCapacity() {
 		LinkedStack<String> stack = new LinkedStack<String>();
 		try {
+			stack.setCapacity(2);
 			stack.setCapacity(-1);
 			fail();
 		} catch (IllegalArgumentException e) {
