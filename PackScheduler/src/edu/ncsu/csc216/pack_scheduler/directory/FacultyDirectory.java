@@ -8,6 +8,7 @@ import java.security.NoSuchAlgorithmException;
 import edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.User;
+import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
 /**
  * Maintains a directory of faculty with all their information.
@@ -33,7 +34,7 @@ public class FacultyDirectory {
 	 * Creates an empty faculty directory. All faculty in the previous list are
 	 * lost unless saved by the user.
 	 */
-	private void newFacultyDirectory() {
+	public void newFacultyDirectory() {
 		facultyDirectory = new LinkedList<Faculty>();
 	}
 	
@@ -127,7 +128,7 @@ public class FacultyDirectory {
 	 * @return True if the faculty is removed and false if the faculty is not in the
 	 *         directory.
 	 */
-	public boolean removefaculty(String facultyId) {
+	public boolean removeFaculty(String facultyId) {
 		User s = null; // Placeholder variable for each faculty in the directory
 
 		// Check each faculty in the directory
@@ -179,7 +180,7 @@ public class FacultyDirectory {
 	 */
 	public void saveFacultyDirectory(String fileName) {
 		try {
-			RacultyRecordIO.writeFacultyRecords(fileName, facultyDirectory);
+			FacultyRecordIO.writeFacultyRecords(fileName, facultyDirectory);
 		} catch (IOException e) {
 			throw new IllegalArgumentException("Unable to write to file " + fileName);
 		}
