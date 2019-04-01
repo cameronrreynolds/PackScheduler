@@ -23,16 +23,22 @@ public class CourseRoll {
 	/** The highest possible enrollmentCap */
 	private static final int MAX_ENROLLMENT = 250;
 	/** The waitlist for students trying to enroll in a course. */
-	private LinkedQueue<Student> waitlist = new LinkedQueue<Student>(10);
+	private LinkedQueue<Student> waitlist;
+	/** Course that is with this course roll */
+	private Course c;
+	
 
 	/**
 	 * Constructor of the CourseRoll Class
 	 * 
 	 * @param cap the maximum number of students allowed on the roll
+	 * @param c the course for the course Roll
 	 */
 	public CourseRoll(int cap, Course c) {
+		this.c = c;
 		roll = new LinkedAbstractList<Student>(cap);
 		setEnrollmentCap(cap);
+		waitlist = new LinkedQueue<Student>(10);
 	}
 
 	/**
@@ -50,9 +56,12 @@ public class CourseRoll {
 		if (cap > MAX_ENROLLMENT) {
 			throw new IllegalArgumentException();
 		}
+		if(cap < roll.size()) {
+			throw new IllegalArgumentException();
+		}
 
-		roll.setCapacity(cap);
 		this.enrollmentCap = cap;
+		roll.setCapacity(cap);
 	}
 
 	/**
@@ -77,17 +86,24 @@ public class CourseRoll {
 			throw new IllegalArgumentException();
 		}
 
-		// if the student is a duplicate, the IllegalArgumentException will just be
-		// thrown from add()
-		if (canEnroll(s)) {
-			roll.add(s);
-		} else {
-			try {
-				waitlist.enqueue(s);
-			} catch (IllegalArgumentException e) {
+		for(int i = 0; i < roll.size(); i++) {
+			if(roll.get(i).equals(s)) {
 				throw new IllegalArgumentException();
 			}
 		}
+		
+		if(roll.size() ==  roll.getCapacity()) {
+			if(waitlist.size() == 10) {
+				throw new IllegalArgumentException();
+			}
+			try {
+				waitlist.enqueue(s);
+				return;
+			} catch(IllegalArgumentException e) {
+				throw new IllegalArgumentException();
+			}
+		}
+		roll.add(s);
 	}
 
 
@@ -101,9 +117,25 @@ public class CourseRoll {
 		if (s == null) {
 			throw new IllegalArgumentException();
 		}
-
-		roll.remove(s);
-		roll.add(waitlist.dequeue());
+		for(int i = 0; i < roll.size(); i++) {
+			if(roll.get(i).equals(s)) {
+				roll.remove(i);
+				if(!waitlist.isEmpty()) {
+					Student s1 = waitlist.dequeue();
+					roll.add(s1);
+					s1.getSchedule().addCourseToSchedule(c);
+				}
+				return;
+			}
+		}
+		
+		Student s1;
+		for(int i = 0; i < waitlist.size(); i++) {
+			s1 = waitlist.dequeue();
+			if(!s.equals(s1)) {
+				waitlist.enqueue(s1);
+			}
+		}
 	}
 
 	/**
@@ -112,7 +144,7 @@ public class CourseRoll {
 	 * @return the remaining number of seats in the Course
 	 */
 	public int getOpenSeats() {
-		return enrollmentCap - roll.size();
+		return roll.getCapacity() - roll.size();
 	}
 
 	/**
@@ -123,34 +155,22 @@ public class CourseRoll {
 	 *         that Course
 	 */
 	public boolean canEnroll(Student s) {
-		// class if full
-		if (roll.size() == enrollmentCap) {
+		if(waitlist.size() == 10 && roll.size() - enrollmentCap == 0) {
 			return false;
 		}
-		
-		if (waitlist.size() == waitlist.getCapacity()) {
-			return false;
+		for(int i = 0; i < roll.size(); i++) {
+			if(roll.get(i).equals(s)) return false;
 		}
-		
-		// student is already enrolled
-		for (int i = 0; i < roll.size(); i++) {
-			if (s.equals(roll.get(i))) {
-				return false;
+		Student s1;
+		boolean test = true;
+		for(int i = 0; i < waitlist.size(); i++) {
+			s1 = waitlist.dequeue();
+			if(s.equals(s1)) {
+				test = false;
 			}
+			waitlist.enqueue(s1);
 		}
-		
-		LinkedQueue<Student> newWaitlist = new LinkedQueue<Student>(10);
-		for (int i = 0; i < waitlist.size(); i++) {
-			Student student = waitlist.dequeue();
-			newWaitlist.enqueue(student);
-			if (student.equals(s)) {
-				return false;
-			}
-		}
-
-		waitlist = newWaitlist;
-		
-		return true;
+		return test;
 	}
 	
 	/**

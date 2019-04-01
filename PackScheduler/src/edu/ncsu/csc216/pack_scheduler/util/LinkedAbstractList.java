@@ -45,6 +45,14 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		
 		this.capacity = cap;
 	}
+	
+	/**
+	 * This method returns the capacity
+	 * @return the capacity
+	 */
+	public int getCapacity() {
+		return capacity;
+	}
 
 	/**
 	 * Adds an element at the end of the list. Calls add(size, value)
@@ -147,7 +155,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 
 		// check that adding wouldn't make the list too big
 		if (size == capacity) {
-			throw new IllegalArgumentException(); // TODO check exception type and message
+			throw new IllegalArgumentException("Capacity has been met"); // TODO check exception type and message
 		}
 
 		// check if element is a duplicate

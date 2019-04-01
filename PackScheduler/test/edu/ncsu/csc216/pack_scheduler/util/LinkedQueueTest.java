@@ -73,15 +73,13 @@ public class LinkedQueueTest {
 	
 	@Test
 	public void testSetCapacity() {
-		LinkedQueue<String> queue = new LinkedQueue<String>();
+		LinkedQueue<String> queue = new LinkedQueue<String>(0);
 		try {
 			queue.setCapacity(-1);
 			fail();
 		} catch (IllegalArgumentException e) {
 			assertEquals(0, queue.size());
 		}
-		LinkedQueue<String> q = new LinkedQueue<String>(2);
-		assertEquals(2, q.getCapacity());
 	}
 }
 

@@ -167,7 +167,7 @@ public class LinkedAbstractListTest {
 			l.add("0");
 			fail();
 		} catch (IllegalArgumentException e) {
-			assertEquals(null, e.getMessage());
+			assertEquals("Capacity has been met", e.getMessage());
 		}
 		
 		//Illegal arg (cap < size)
