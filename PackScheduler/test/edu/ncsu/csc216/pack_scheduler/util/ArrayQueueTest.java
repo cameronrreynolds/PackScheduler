@@ -6,12 +6,15 @@ import org.junit.*;
 
 
 /**
+ * This class tests the ArrayQueue class and all of its methods
  * @author Cameron, Michael, Matthew
- * @param <E>
  *
  */
 public class ArrayQueueTest {
 
+	/**
+	 * This method tests the enqueue method
+	 */
 	@Test
 	public void testEnqueue() {
 		ArrayQueue<String> queue = new ArrayQueue<String>(2);
@@ -40,6 +43,9 @@ public class ArrayQueueTest {
 		}
 	}
 	
+	/**
+	 * This method tests the dequeue method
+	 */
 	@Test
 	public void testDequeue() {
 		ArrayQueue<String> queue = new ArrayQueue<String>(10);
@@ -63,12 +69,18 @@ public class ArrayQueueTest {
 		}
 	}
 	
+	/**
+	 * This method tests the isEmpty method
+	 */
 	@Test
 	public void testIsEmpty() {
 		ArrayQueue<String> queue = new ArrayQueue<String>(10);
 		assertEquals(0, queue.size());
 	}
 	
+	/**
+	 * This method tests the setCapacity method
+	 */
 	@Test
 	public void testSetCapacity() {
 		ArrayQueue<String> queue = new ArrayQueue<String>();

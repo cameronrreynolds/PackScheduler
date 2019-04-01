@@ -28,6 +28,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	 * @param cap the given capacity of the queue
 	 */
 	public LinkedQueue(int cap) {
+		System.out.println(cap);
 		queue = new LinkedAbstractList<E>(cap);
 		setCapacity(cap);
 	}

@@ -80,5 +80,10 @@ public class LinkedQueueTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals(0, queue.size());
 		}
+		LinkedQueue<String> q = new LinkedQueue<String>(2);
+		assertEquals(2, q.getCapacity());
 	}
 }
+
+
+
