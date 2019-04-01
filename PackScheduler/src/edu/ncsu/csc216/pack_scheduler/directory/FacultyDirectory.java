@@ -6,9 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO;
-import edu.ncsu.csc216.pack_scheduler.io.StudentRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
-import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
 /**
@@ -55,19 +53,19 @@ public class FacultyDirectory {
 	}
 	
 	/**
-	 * Adds a Student to the directory. Returns true if the student is added and
-	 * false if the student is unable to be added because their id matches another
-	 * student's id.
+	 * Adds a Faculty to the directory. Returns true if the faculty is added and
+	 * false if the faculty is unable to be added because their id matches another
+	 * faculty's id.
 	 * 
-	 * This method also hashes the student's password for internal storage.
+	 * This method also hashes the faculty's password for internal storage.
 	 * 
-	 * @param firstName      student's first name
-	 * @param lastName       student's last name
-	 * @param id             student's id
-	 * @param email          student's email
-	 * @param password       student's password
-	 * @param repeatPassword student's repeated password
-	 * @param maxCredits     student's max credits.
+	 * @param firstName      faculty's first name
+	 * @param lastName       faculty's last name
+	 * @param id             faculty's id
+	 * @param email          faculty's email
+	 * @param password       faculty's password
+	 * @param repeatPassword faculty's repeated password
+	 * @param maxCredits     faculty's max credits.
 	 * @return true if added
 	 * @throws IllegalArgumentException if the passwords are null, empty strings,
 	 *                                  cannot be hashed, or don't match
@@ -102,15 +100,15 @@ public class FacultyDirectory {
 		}
 
 		// We have now ensured the password and its repeat are valid and hashed.
-		// We will try to create a student and add it to the directory using this
+		// We will try to create a faculty and add it to the directory using this
 		// information.
-		// If an IllegalArgumentException is thrown while creating the student, it's
-		// passed up from Student to the GUI.
+		// If an IllegalArgumentException is thrown while creating the faculty, it's
+		// passed up from faculty to the GUI.
 		Faculty faculty = new Faculty(firstName, lastName, id, email, hashPW, maxCourses);
 
-		// Check that the student we just created is not already in the directory by
-		// comparing the IDs of every student in the directory against ours.
-		// If the IDs match, don't add the student and return false.
+		// Check that the faculty we just created is not already in the directory by
+		// comparing the IDs of every faculty in the directory against ours.
+		// If the IDs match, don't add the faculty and return false.
 		for (int i = 0; i < facultyDirectory.size(); i++) {
 			User s = facultyDirectory.get(i);
 			if (s.getId().equals(faculty.getId())) {
@@ -118,19 +116,19 @@ public class FacultyDirectory {
 			}
 		}
 
-		// Add the unique student and return true
+		// Add the unique faculty and return true
 		return facultyDirectory.add(faculty);
 	}
 	
 	/**
-	 * Removes the first student with a given id from the student directory.
+	 * Removes the first faculty with a given id from the faculty directory.
 	 * 
-	 * @param studentId student's id
-	 * @return True if the student is removed and false if the student is not in the
+	 * @param facultyId faculty's id
+	 * @return True if the faculty is removed and false if the faculty is not in the
 	 *         directory.
 	 */
-	public boolean removeStudent(String facultyId) {
-		User s = null; // Placeholder variable for each student in the directory
+	public boolean removefaculty(String facultyId) {
+		User s = null; // Placeholder variable for each faculty in the directory
 
 		// Check each faculty in the directory
 		for (int i = 0; i < facultyDirectory.size(); i++) {
@@ -148,17 +146,17 @@ public class FacultyDirectory {
 	}
 
 	/**
-	 * Returns all students in the directory with a column for first name, last
+	 * Returns all faculty in the directory with a column for first name, last
 	 * name, and id.
 	 * 
-	 * @return 2d String array containing students first name, last name, and id.
-	 *         One student per row.
+	 * @return 2d String array containing faculty first name, last name, and id.
+	 *         One faculty per row.
 	 */
 	public String[][] getFacultyDirectory() {
 		String[][] directory = new String[facultyDirectory.size()][3];
-		User s = null; // Placeholder variable for each student in the directory.
+		User s = null; // Placeholder variable for each faculty in the directory.
 
-		// Go through each student in the directory and add their information to a row
+		// Go through each faculty in the directory and add their information to a row
 		// in the array.
 		for (int i = 0; i < facultyDirectory.size(); i++) {
 			s = facultyDirectory.get(i);
@@ -169,14 +167,14 @@ public class FacultyDirectory {
 			directory[i][2] = s.getId();
 		}
 
-		// Return the array of student information.
+		// Return the array of faculty information.
 		return directory;
 	}
 
 	/**
-	 * Saves all students in the directory to a file.
+	 * Saves all faculty in the directory to a file.
 	 * 
-	 * @param fileName File path to save student directory to as a String.
+	 * @param fileName File path to save faculty directory to as a String.
 	 * @throws IllegalArgumentException if the file cannot be written to.
 	 */
 	public void saveFacultyDirectory(String fileName) {
