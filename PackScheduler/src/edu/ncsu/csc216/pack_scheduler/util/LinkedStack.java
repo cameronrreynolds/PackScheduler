@@ -2,7 +2,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import java.util.EmptyStackException;
 
- /** This class implements the functionality outlined in the stack interface using LinkedAbstractLists.
+/**
+ * This class implements the functionality outlined in the stack interface using LinkedAbstractLists.
  * 
  * @author Matthew Strickland, Michael, Cameron
  *
