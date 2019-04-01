@@ -129,6 +129,7 @@ public class CourseRoll {
 			}
 		}
 		
+		// This goes through waitlist and removes them from the list
 		Student s1;
 		for(int i = 0; i < waitlist.size(); i++) {
 			s1 = waitlist.dequeue();
