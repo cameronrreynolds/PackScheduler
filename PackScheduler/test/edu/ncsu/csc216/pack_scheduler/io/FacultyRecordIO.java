@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 
 /**
@@ -20,9 +21,8 @@ public class FacultyRecordIO {
 
 	/**
 	 * This method takes a String parameter representing the name of the file that
-	 * contains faculty information to read from. A scanner is created and it's
-	 * delimiter set to a comma to read each unique field of the Faculty in the
-	 * comma separated list. A LinkedList is then made to store the Faculty in the
+	 * contains faculty information to read from. A scanner is used to read each
+	 * line one at a time. A LinkedList is then made to store the Faculty in the
 	 * file in a list. While the file continues to have valid lines, it gets the
 	 * current line and passes it as a parameter to the processFaculty method to
 	 * actually return the Faculty object represented by the line.
@@ -31,7 +31,8 @@ public class FacultyRecordIO {
 	 * @param fileName the name of the file that contains the faculty information in
 	 *                 a comma separated list.
 	 * @return A LinkedList of Faculty objects that were read in from the file.
-	 * @throws FileNotFoundException if the file specified by the fileName does not exist.
+	 * @throws FileNotFoundException if the file specified by the fileName does not
+	 *                               exist.
 	 */
 	public static LinkedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
@@ -68,6 +69,17 @@ public class FacultyRecordIO {
 		return facultyList; // return the list of unique Faculty.
 	}
 
+	/**
+	 * This method is called by the readFacultyRecords() method that passes in the
+	 * line to be processed. A scanner with a delimiter set to a comma reads each
+	 * value which corresponds to the Faculty's fields. Once all of the values are
+	 * read in a Faculty object is created. If any of the values are invalid then an
+	 * IllegalArgumentException is thrown.
+	 * 
+	 * @param line the line from the file that contains information about the
+	 *             Faculty
+	 * @return a Faculty object from the information in the line.
+	 */
 	private static Faculty processFaculty(String line) {
 		// If the line is empty or null throw an IllegalArgumentException
 		if (line == null || line.equals("")) {
@@ -94,18 +106,27 @@ public class FacultyRecordIO {
 		Faculty faculty; // Placeholder variable for Faculty we are trying to create.
 
 		// If there is a maxCourses number, create a Faculty with it.
-		// Otherwise, create a Faculty without maxCourses.
+		// Otherwise, throw an IllegalArgumentException.
 		if (reader.hasNextInt()) {
 			maxCourses = reader.nextInt();
 			faculty = new Faculty(firstName, lastName, id, email, hashedPassword, maxCourses);
 		} else {
-			faculty = new Faculty(firstName, lastName, id, email, hashedPassword);
+			reader.close();
+			throw new IllegalArgumentException();
 		}
 
 		reader.close(); // Always close what you open
 		return faculty;
 	}
 
+	/**
+	 * Writes the Faculty Objects in the LinkedList to a file specified by the fileName parameter by traversing the
+	 * LinkedList, also passed in as a parameter, and using the toString() method on each Faculty object.
+	 * 
+	 * @param fileName The name of the file to be written to.
+	 * @param list the List of Faculty Objects to write to the file.
+	 * @throws IOException if the file is invalid or inaccessible.
+	 */
 	public static void writeFacultyRecords(String fileName, LinkedList<Faculty> list) throws IOException {
 		PrintStream fileWriter = new PrintStream(new File(fileName));
 		for (int i = 0; i < list.size(); i++) {
