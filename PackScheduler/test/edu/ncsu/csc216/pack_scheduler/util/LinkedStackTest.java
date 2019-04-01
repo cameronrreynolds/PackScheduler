@@ -13,12 +13,15 @@ import org.junit.*;
 
 
 /**
+ * This class tests the LinkedStack class and all of its methods
  * @author Cameron, Michael, Matthew
- * @param <E>
  *
  */
 public class LinkedStackTest {
 
+	/**
+	 * This method tests the push method
+	 */
 	@Test
 	public void testPush() {
 		LinkedStack<String> stack = new LinkedStack<String>(2);
@@ -43,10 +46,13 @@ public class LinkedStackTest {
 			stack.push("Third");
 			fail();
 		} catch (IllegalArgumentException e) {
-
+			assertEquals("Capacity has been met", e.getMessage());
 		}
 	}
 	
+	/**
+	 * This method tests the pop method
+	 */
 	@Test
 	public void testPop() {
 		LinkedStack<String> stack = new LinkedStack<String>(10);
@@ -66,16 +72,22 @@ public class LinkedStackTest {
 			stack.pop();
 			fail();
 		} catch (EmptyStackException e) {
-		
+			// do nothing, test passes
 		}
 	}
 	
+	/**
+	 * This method tests the isEmpty method
+	 */
 	@Test
 	public void testIsEmpty() {
 		LinkedStack<String> stack = new LinkedStack<String>(10);
 		assertEquals(0, stack.size());
 	}
 	
+	/**
+	 * This method tests the setCapacity method
+	 */
 	@Test
 	public void testSetCapacity() {
 		LinkedStack<String> stack = new LinkedStack<String>();

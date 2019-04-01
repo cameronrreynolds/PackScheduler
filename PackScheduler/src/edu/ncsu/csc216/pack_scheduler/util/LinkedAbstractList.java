@@ -27,6 +27,8 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 * @param cap The maximum number of element allowed in the list.
 	 */
 	public LinkedAbstractList(int cap) {
+		front = null;
+		back = null;
 		this.size = 0;
 		setCapacity(cap);
 	}
@@ -39,11 +41,19 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	 *                                  current size.
 	 */
 	public void setCapacity(int cap) {
-		if (cap < size) { // this also tests if cap < 0
+		if (cap < size || cap < 0) { 
 			throw new IllegalArgumentException();
 		}
 		
 		this.capacity = cap;
+	}
+	
+	/**
+	 * This method returns the capacity
+	 * @return the capacity
+	 */
+	public int getCapacity() {
+		return capacity;
 	}
 
 	/**
@@ -147,7 +157,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 
 		// check that adding wouldn't make the list too big
 		if (size == capacity) {
-			throw new IllegalArgumentException(); // TODO check exception type and message
+			throw new IllegalArgumentException("Capacity has been met"); // TODO check exception type and message
 		}
 
 		// check if element is a duplicate
@@ -160,19 +170,18 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 		// check for front of the list and null front
 		if (index == 0) {
 			front = new ListNode(value, front);
-			if(size() == 0) {
-				back = front;
-			}
-		} else if(index == size()) {
-			ListNode insert = new ListNode(value, null);
-			back.next = insert;
-			back = insert;
 		} else {
-			ListNode current = front;
-			for (int i = 0; i < index - 1; i++) {
-				current = current.next;
+			ListNode curr = front;
+			for(int i = 0; i < index - 1; i++) {
+				curr = curr.next;
 			}
-			current.next = new ListNode(value, current.next);
+			curr.next = new ListNode(value, curr.next);
+		}
+		
+		if(size == 1) {
+			back = front;
+		} else if(index == size - 1) {
+			back = back.next;
 		}
 		size++;
 	}

@@ -13,12 +13,15 @@ import org.junit.*;
 
 
 /**
+ * This class tests the ArrayStack class and all of its methods
  * @author Cameron, Michael, Matthew
- * @param <E>
  *
  */
 public class ArrayStackTest {
 
+	/**
+	 * This tests the push method
+	 */
 	@Test
 	public void testPush() {
 		ArrayStack<String> stack = new ArrayStack<String>(2);
@@ -43,10 +46,13 @@ public class ArrayStackTest {
 			stack.push("Third");
 			fail();
 		} catch (IllegalArgumentException e) {
-
+			// do nothing test passed
 		}
 	}
 	
+	/**
+	 * This tests the pop method
+	 */
 	@Test
 	public void testPop() {
 		ArrayStack<String> stack = new ArrayStack<String>(10);
@@ -66,16 +72,22 @@ public class ArrayStackTest {
 			stack.pop();
 			fail();
 		} catch (EmptyStackException e) {
-		
+			// do nothing test passed
 		}
 	}
 	
+	/**
+	 * This tests the isEmpty method
+	 */
 	@Test
 	public void testIsEmpty() {
 		ArrayStack<String> stack = new ArrayStack<String>(10);
 		assertEquals(0, stack.size());
 	}
 	
+	/**
+	 * This tests the setCapacity method
+	 */
 	@Test
 	public void testSetCapacity() {
 		ArrayStack<String> stack = new ArrayStack<String>();

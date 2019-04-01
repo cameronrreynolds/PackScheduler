@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.util;
 
+import java.util.NoSuchElementException;
+
 /**
  * This class represents a queue implemented with an 
  * array list. It has the functionality of adding, removing, 
@@ -56,7 +58,7 @@ public class ArrayQueue<E> implements Queue<E> {
 	@Override
 	public E dequeue() {
 		if(isEmpty()) {
-			throw new IllegalArgumentException("Queue is empty");
+			throw new NoSuchElementException("Queue is empty");
 		}
 		return queue.remove(0);
 	}

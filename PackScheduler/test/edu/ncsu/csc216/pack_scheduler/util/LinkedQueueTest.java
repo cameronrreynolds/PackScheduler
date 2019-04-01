@@ -8,12 +8,15 @@ import org.junit.*;
 
 
 /**
+ * This class tests the LinkedQueue class and all of its methods
  * @author Cameron, Michael, Matthew
- * @param <E>
  *
  */
 public class LinkedQueueTest {
 
+	/**
+	 * This method tests the enqueue method
+	 */
 	@Test
 	public void testEnqueue() {
 		LinkedQueue<String> queue = new LinkedQueue<String>(2);
@@ -42,6 +45,9 @@ public class LinkedQueueTest {
 		}
 	}
 	
+	/**
+	 * This method tests the dequeue method
+	 */
 	@Test
 	public void testDequeue() {
 		LinkedQueue<String> queue = new LinkedQueue<String>(10);
@@ -65,23 +71,27 @@ public class LinkedQueueTest {
 		}
 	}
 	
+	/**
+	 * This method tests the isEmpty method
+	 */
 	@Test
 	public void testIsEmpty() {
 		LinkedQueue<String> queue = new LinkedQueue<String>(10);
 		assertTrue(queue.isEmpty());
 	}
 	
+	/**
+	 * This method tests the set capacity method
+	 */
 	@Test
 	public void testSetCapacity() {
-		LinkedQueue<String> queue = new LinkedQueue<String>();
+		LinkedQueue<String> queue = new LinkedQueue<String>(0);
 		try {
 			queue.setCapacity(-1);
 			fail();
 		} catch (IllegalArgumentException e) {
 			assertEquals(0, queue.size());
 		}
-		LinkedQueue<String> q = new LinkedQueue<String>(2);
-		assertEquals(2, q.getCapacity());
 	}
 }
 

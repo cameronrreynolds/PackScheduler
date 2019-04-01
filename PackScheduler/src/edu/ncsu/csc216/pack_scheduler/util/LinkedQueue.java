@@ -12,25 +12,19 @@ import java.util.NoSuchElementException;
 public class LinkedQueue<E> implements Queue<E> {
 	/** This represents the queue as a linked list */
 	private LinkedAbstractList<E> queue;
-	/** This represents the capacity of the queue */
-	private int capacity;
+	/** This represents the number of elements in the queue */
+	private int size;
 	
-	/**
-	 * This is the default no arg constructor of a LinkedQueue/
-	 * It initializes queue and sets the capacity to zero.
-	 */
-	public LinkedQueue() {
-		this(0);
-	}
+	
 	/**
 	 * This constructs a LinkedQueue and sets the capacity
 	 * to the given capacity
 	 * @param cap the given capacity of the queue
 	 */
 	public LinkedQueue(int cap) {
-		System.out.println(cap);
 		queue = new LinkedAbstractList<E>(cap);
 		setCapacity(cap);
+		this.size = 0;
 	}
 
 	/**
@@ -39,10 +33,12 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public void enqueue(E element) {
-		if(size() == capacity) {
-			throw new IllegalArgumentException("Capacity has been met");
+		try {
+			queue.add(this.size(), element);
+			this.size = queue.size();
+		} catch(IllegalArgumentException e) {
+			throw new IllegalArgumentException(e.getMessage());
 		}
-		queue.add(element);
 	}
 
 	/**
@@ -53,8 +49,11 @@ public class LinkedQueue<E> implements Queue<E> {
 	public E dequeue() {
 		if(isEmpty()) {
 			throw new NoSuchElementException("Queue is empty");
+		} else {
+			this.size = queue.size() - 1;
+			return queue.remove(0);
 		}
-		return queue.remove(0);
+		
 	}
 
 	/**
@@ -63,7 +62,7 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public boolean isEmpty() {
-		return queue.isEmpty();
+		return size == 0;
 	}
 
 	/**
@@ -82,17 +81,12 @@ public class LinkedQueue<E> implements Queue<E> {
 	 */
 	@Override
 	public void setCapacity(int capacity) {
-		if(capacity < 0 || capacity < size()) {
+		if(capacity < 0 || capacity < size) {
 			throw new IllegalArgumentException("Invalid capacity");
 		}
 		queue.setCapacity(capacity);
 	}
 
-	/**
-	 * Returns the capacity of the LinkedQueue.
-	 */
-	public int getCapacity() {
-		return this.capacity;
-	}
+	
 	
 }

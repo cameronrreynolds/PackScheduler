@@ -1,12 +1,16 @@
 package edu.ncsu.csc216.pack_scheduler.util;
-
+/**
+ * This class represents a queue. It has custom implementation
+ * @author Cameron, Michael, Matthew
+ * @param <E> the type of the queue
+ */
 public interface Queue<E> {
 	
 	/**
 	 * This method adds the element to the back of the 
 	 * queue. If there is no room(capacity has been reached),
 	 * an IllegalArgumentException is thrown
-	 * @param eleement the element to add to the queue
+	 * @param element the element to add to the queue
 	 */
 	public void enqueue(E element);
 	
