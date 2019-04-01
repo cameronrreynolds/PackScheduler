@@ -19,8 +19,7 @@ public class LinkedAbstractList<E> extends AbstractList<E> {
 	private int size;
 	/** The maximum number of element available in the list */
 	private int capacity;
-	/** This ListNode references the last node in the list */
-	private ListNode back;
+	
 
 	/**
 	 * Constructs a new, empty list with a given maximum number of elements.
