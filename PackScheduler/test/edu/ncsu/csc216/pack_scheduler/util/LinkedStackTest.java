@@ -46,7 +46,7 @@ public class LinkedStackTest {
 			stack.push("Third");
 			fail();
 		} catch (IllegalArgumentException e) {
-			// do nothing, test passes
+			assertEquals("Capacity has been met", e.getMessage());
 		}
 	}
 	
