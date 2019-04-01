@@ -129,13 +129,13 @@ public class CourseRoll {
 			}
 		}
 		
-		Student s1;
-		for(int i = 0; i < waitlist.size(); i++) {
-			s1 = waitlist.dequeue();
-			if(!s.equals(s1)) {
-				waitlist.enqueue(s1);
-			}
-		}
+//		Student s1;
+//		for(int i = 0; i < waitlist.size(); i++) {
+//			s1 = waitlist.dequeue();
+//			if(!s.equals(s1)) {
+//				waitlist.enqueue(s1);
+//			}
+//		}
 	}
 
 	/**

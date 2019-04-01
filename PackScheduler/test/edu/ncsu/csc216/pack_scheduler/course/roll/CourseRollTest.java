@@ -57,6 +57,7 @@ public class CourseRollTest {
 		} catch(IllegalArgumentException e) {
 			assertNull(cr2);
 		}
+		
 	}
 
 	/**
@@ -66,6 +67,81 @@ public class CourseRollTest {
 	public void testGetEnrollmentCap() {
 		CourseRoll cr = new CourseRoll(CAP, C);
 		assertEquals(cr.getEnrollmentCap(), CAP);
+	}
+	
+	/**
+	 * This further tests the enroll method
+	 */
+	@Test
+	public void testEnroll2() {
+		CourseRoll cr = new CourseRoll(10, C);
+		
+		cr.enroll(new Student("Jack", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Jackie", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Jacks", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Jackal", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Jac", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Jak", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Jackson", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Jacklyn", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Jacklyne", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Mike", LAST_NAME, ID, EMAIL, PASS));
+		
+		cr.enroll(new Student("Bob1", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob2", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob3", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob4", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob5", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob6", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob7", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob8", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob9", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob10", LAST_NAME, ID, EMAIL, PASS));
+		
+		try {
+			cr.enroll(new Student("Bob11", LAST_NAME, ID, EMAIL, PASS));
+			fail();
+		} catch(IllegalArgumentException e) {
+			// do nothing, test passes
+		}
+	
+		
+	}
+	
+	
+	/**
+	 * This further tests the drop method
+	 */
+	@Test
+	public void testDrop2() {
+		CourseRoll cr = new CourseRoll(10, C);
+		Student s1 = new Student("Jack", LAST_NAME, ID, EMAIL, PASS);
+		Student s2 = new Student("Jackie", LAST_NAME, ID, EMAIL, PASS);
+		Student s3 = new Student("Jacks", LAST_NAME, ID, EMAIL, PASS);
+		Student s4 = new Student("Jackal", LAST_NAME, ID, EMAIL, PASS);
+		Student s5 = new Student("Jac", LAST_NAME, ID, EMAIL, PASS);
+		Student s6 = new Student("Jak", LAST_NAME, ID, EMAIL, PASS);
+		Student s7 = new Student("Jackson", LAST_NAME, ID, EMAIL, PASS);
+		Student s8 = new Student("Jacklyn", LAST_NAME, ID, EMAIL, PASS);
+		Student s9 = new Student("Jacklyne", LAST_NAME, ID, EMAIL, PASS);
+		Student s10 = new Student("Mike", LAST_NAME, ID, EMAIL, PASS);
+		
+		cr.enroll(s1);
+		cr.enroll(s2);
+		cr.enroll(s3);
+		cr.enroll(s4);
+		cr.enroll(s5);
+		cr.enroll(s6);
+		cr.enroll(s7);
+		cr.enroll(s8);
+		cr.enroll(s9);
+		cr.enroll(s10);
+		
+		cr.enroll(new Student("Bob1", LAST_NAME, ID, EMAIL, PASS));
+		cr.enroll(new Student("Bob2", LAST_NAME, ID, EMAIL, PASS));
+		
+		cr.drop(s1);
+		assertEquals(0, cr.getOpenSeats());
 	}
 
 	/**
