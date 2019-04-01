@@ -10,6 +10,7 @@ import java.util.Properties;
 import edu.ncsu.csc216.pack_scheduler.catalog.CourseCatalog;
 import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
+import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
@@ -29,6 +30,8 @@ public class RegistrationManager {
 	private CourseCatalog courseCatalog;
 	/** List of students who can log into the system and create their schedules. */
 	private StudentDirectory studentDirectory;
+	/** List of faculty who can log into the system and manage their schedules. */
+	private FacultyDirectory facultyDirectory;
 
 	/** The registrar can add and remove students and courses from directories */
 	private User registrar;
@@ -110,6 +113,15 @@ public class RegistrationManager {
 	 */
 	public StudentDirectory getStudentDirectory() {
 		return studentDirectory;
+	}
+	
+	/**
+	 * Getter method for faculty directory.
+	 * 
+	 * @return The created faculty directory.
+	 */
+	public FacultyDirectory getFacultyDirectory() {
+		return facultyDirectory;
 	}
 
 	/**
