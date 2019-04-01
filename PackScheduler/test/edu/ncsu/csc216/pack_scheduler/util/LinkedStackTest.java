@@ -46,7 +46,7 @@ public class LinkedStackTest {
 			stack.push("Third");
 			fail();
 		} catch (IllegalArgumentException e) {
-
+			// do nothing, test passes
 		}
 	}
 	
@@ -72,7 +72,7 @@ public class LinkedStackTest {
 			stack.pop();
 			fail();
 		} catch (EmptyStackException e) {
-		
+			// do nothing, test passes
 		}
 	}
 	
