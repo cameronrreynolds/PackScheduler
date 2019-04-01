@@ -2,7 +2,7 @@ package edu.ncsu.csc216.pack_scheduler.util;
 /**
  * This class represents a queue. It has custom implementation
  * @author Cameron, Michael, Matthew
- *
+ * @param <E> the type of the queue
  */
 public interface Queue<E> {
 	
