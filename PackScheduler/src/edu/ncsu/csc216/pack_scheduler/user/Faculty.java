@@ -10,6 +10,10 @@ public class Faculty extends User {
 
 	/** The maximum number of courses faculty can teach. */
 	private int maxCourses;
+	/** This represents the min courses value */
+	private static final int MIN_COURSES = 1;
+	/** This represents the max courses value */
+	private static final int MAX_COURSES = 3;
 	
 	/**
 	 * Creates a new Faculty object.
@@ -32,6 +36,7 @@ public class Faculty extends User {
      * @param maxCourses The number of courses.
      */
 	public void setMaxCourses(int maxCourses) {
+		if(maxCourses < MIN_COURSES || maxCourses > MAX_COURSES) throw new IllegalArgumentException();
 		this.maxCourses = maxCourses;
 	}
 	
