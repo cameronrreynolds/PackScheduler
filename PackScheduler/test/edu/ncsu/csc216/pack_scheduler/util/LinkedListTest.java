@@ -2,6 +2,8 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 
+import java.util.ListIterator;
+
 import org.junit.Test;
 /**
  * Tests the ArrayList Class
@@ -175,4 +177,45 @@ public class LinkedListTest {
 		}
 		
 	}
+	
+	/**
+	 * Tests the add method for the LinkedList Class
+	 */
+	@Test
+	public void testAddatEnd() {
+		LinkedList<String> test = new LinkedList<String>();
+		test.add(0, "First");
+		test.add(1, "Second");
+		test.add("Third");
+		assertEquals("First", test.get(0));
+		assertEquals("Second", test.get(1));
+		assertEquals("Third", test.get(2));
+	}
+	
+	
+	
+	/**
+	 * Tests the remove method for the LinkedList Class
+	 */
+	@Test
+	public void testIterator() {
+		LinkedList<String> test = new LinkedList<String>();
+		test.add(0, "First");
+		test.add(1, "Second");
+		test.add("Third");
+		ListIterator<String> it = test.listIterator();
+		assertFalse(it.hasPrevious());
+		assertEquals(0, it.nextIndex());
+		assertEquals(-1, it.previousIndex());
+		it.next();
+		assertEquals("First", it.previous());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
