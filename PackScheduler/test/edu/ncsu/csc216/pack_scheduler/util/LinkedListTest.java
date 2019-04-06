@@ -167,7 +167,7 @@ public class LinkedListTest {
 		try {
 			test.add(-1, "mango");
 			fail();
-		} catch (IndexOutOfBoundsException e) {
+		} catch (IllegalArgumentException e) {
 			assertEquals("orange", test.get(0));
 			assertEquals("banana", test.get(1));
 			assertEquals("apple", test.get(2));
