@@ -12,6 +12,7 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 import edu.ncsu.csc216.pack_scheduler.course.roll.CourseRoll;
 import edu.ncsu.csc216.pack_scheduler.directory.FacultyDirectory;
 import edu.ncsu.csc216.pack_scheduler.directory.StudentDirectory;
+import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.user.schedule.Schedule;
@@ -132,43 +133,54 @@ public class RegistrationManager {
 	 * @return A boolean representing if the user logged in or not.
 	 */
 	public boolean login(String id, String password) {
-		if(currentUser != null) {
-			return false; //users cannot login over top of each other
-		}
+
+		Student student = studentDirectory.getStudentById(id);
+		Faculty faculty = facultyDirectory.getFacultyById(id);
 		
-		if (registrar.getId().equals(id)) {
-			MessageDigest digest;
-			try {
-				digest = MessageDigest.getInstance(HASH_ALGORITHM);
-				digest.update(password.getBytes());
-				String localHashPW = new String(digest.digest());
-				if (registrar.getPassword().equals(localHashPW)) {
-					currentUser = registrar;
-					return true;
-				} else {
-					throw new IllegalArgumentException("Invalid id or password");
+		if (currentUser == null) {
+			if (student != null) {
+				try {
+					MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
+					digest.update(password.getBytes());
+					String localHashPW = new String(digest.digest());
+					if (student.getPassword().equals(localHashPW)) {
+						currentUser = student;
+						return true;
+					}
+				} catch (NoSuchAlgorithmException e) {
+					throw new IllegalArgumentException();
 				}
-			} catch (NoSuchAlgorithmException e) {
-				throw new IllegalArgumentException();
+			} else if (registrar.getId().equals(id)) {
+					MessageDigest digest;
+					try {
+						digest = MessageDigest.getInstance(HASH_ALGORITHM);
+						digest.update(password.getBytes());
+						String localHashPW = new String(digest.digest());
+						if (registrar.getPassword().equals(localHashPW)) {
+							currentUser = registrar;
+							return true;
+						}
+					} catch (NoSuchAlgorithmException e) {
+						throw new IllegalArgumentException();
+					}
+			} else if(faculty != null) {
+				MessageDigest digest;
+				try {
+					digest = MessageDigest.getInstance(HASH_ALGORITHM);
+					digest.update(password.getBytes());
+					String hasedPw = new String(digest.digest());
+					if(faculty.getPassword().equals(hasedPw)) {
+						currentUser = faculty;
+						return true;
+					}
+				} catch(NoSuchAlgorithmException e) {
+					throw new IllegalArgumentException();
+				}
+			} else {
+				throw new IllegalArgumentException("User doesn't exist.");
 			}
 		}
-		
-		Student s = studentDirectory.getStudentById(id);
 
-		try {
-			MessageDigest digest = MessageDigest.getInstance(HASH_ALGORITHM);
-			digest.update(password.getBytes());
-			String localHashPW = new String(digest.digest());
-
-			if (s.getPassword().equals(localHashPW)) {
-				currentUser = s;
-				return true;
-			}
-		} catch (NoSuchAlgorithmException e) {
-			throw new IllegalArgumentException();
-		} catch (NullPointerException e) { // student id does not exist in directory.
-			throw new IllegalArgumentException("User doesn't exist.");
-		}
 
 		return false;
 	}
