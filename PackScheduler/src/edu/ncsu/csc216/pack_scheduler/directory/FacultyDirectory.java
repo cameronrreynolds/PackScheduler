@@ -27,7 +27,7 @@ public class FacultyDirectory {
 	/**
 	 * Creates an empty faculty directory.
 	 */
-	public FacultyDirectory() {
+	public FacultyDirectory() { 
 		newFacultyDirectory();
 	}
 

@@ -49,7 +49,7 @@ public class RegistrationManager {
 	private RegistrationManager() {
 		createRegistrar();
 		courseCatalog = new CourseCatalog();
-		studentDirectory = new StudentDirectory();
+		studentDirectory = new StudentDirectory(); 
 		facultyDirectory = new FacultyDirectory();
 	}
 
@@ -208,6 +208,7 @@ public class RegistrationManager {
 	public void clearData() {
 		courseCatalog.newCourseCatalog();
 		studentDirectory.newStudentDirectory();
+		facultyDirectory.newFacultyDirectory();
 	}
 	
 	/**

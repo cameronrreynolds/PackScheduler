@@ -498,6 +498,9 @@ public class RegistrationManagerTest {
 		manager.getFacultyDirectory().addFaculty("madamik", "adamik", "madamik", "madamik@ncsu.edu", "pw", "pw", 2);
 		assertTrue(manager.login("madamik", "pw"));
 	}
+	
+	
+	
 }
 
 
