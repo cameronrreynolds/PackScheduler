@@ -41,22 +41,22 @@ public class FacultyDirectoryTest {
 	/** Test max credits */
 	private static final int MAX_CREDITS = 3;
 	
-	/**
-	 * Resets course_records.txt for use in other tests.
-	 * @throws Exception if something fails during setup.
-	 */
-	@Before
-	public void setUp() throws Exception {		
-		//Reset Faculty_records.txt so that it's fine for other needed tests
-		final Path sourcePath = FileSystems.getDefault().getPath("test-files", "expected_full_Faculty_records.txt");
-		final Path destinationPath = FileSystems.getDefault().getPath("test-files", "Faculty_records.txt");
-		try {
-			Files.deleteIfExists(destinationPath);
-			Files.copy(sourcePath, destinationPath);
-		} catch (IOException e) {
-			fail("Unable to reset files");
-		}
-	}
+//	/**
+//	 * Resets course_records.txt for use in other tests.
+//	 * @throws Exception if something fails during setup.
+//	 */
+//	@Before
+//	public void setUp() throws Exception {		
+//		//Reset Faculty_records.txt so that it's fine for other needed tests
+//		final Path sourcePath = FileSystems.getDefault().getPath("test-files", "expected_full_Faculty_records.txt");
+//		final Path destinationPath = FileSystems.getDefault().getPath("test-files", "Faculty_records.txt");
+//		try {
+//			Files.deleteIfExists(destinationPath);
+//			Files.copy(sourcePath, destinationPath);
+//		} catch (IOException e) {
+//			fail("Unable to reset files");
+//		}
+//	}
 
 	/**
 	 * Tests FacultyDirectory().
