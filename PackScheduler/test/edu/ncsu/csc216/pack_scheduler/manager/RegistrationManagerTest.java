@@ -487,13 +487,6 @@ public class RegistrationManagerTest {
 	    manager.logout();
 	}
 	
-	/**
-	 * This tests the add and the getFaculty method
-	 */
-	@Test
-	public void testGetfaculty() {
-//		assertTrue(manager.getFacultyDirectory().addFaculty("madamik", "adamik", "madamik", "madamik@ncsu.edu", "pw", "pw", 2));
-	}
 	
 	
 	/**
@@ -503,7 +496,7 @@ public class RegistrationManagerTest {
 	public void testLoginasFaculty() {
 		manager.logout();
 		manager.getFacultyDirectory().addFaculty("madamik", "adamik", "madamik", "madamik@ncsu.edu", "pw", "pw", 2);
-		// assertTrue(manager.login("madamik", "pw"));
+		assertTrue(manager.login("madamik", "pw"));
 	}
 }
 
