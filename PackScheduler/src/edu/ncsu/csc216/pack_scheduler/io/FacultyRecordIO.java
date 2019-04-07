@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
@@ -38,25 +39,20 @@ public class FacultyRecordIO {
 	public static LinkedList<Faculty> readFacultyRecords(String fileName) throws FileNotFoundException {
 		Scanner fileReader = new Scanner(new FileInputStream(fileName));
 		LinkedList<Faculty> facultyList = new LinkedList<Faculty>();
-		Faculty faculty = null; // Placeholder variable for each Faculty in the file.
-		User s = null; // Placeholder variable for each Faculty already added to the LinkedList
-
-		// Look through each line in the file and attempt to create a Faculty.
 		while (fileReader.hasNextLine()) {
 			try {
 
-				faculty = processFaculty(fileReader.nextLine());
+				Faculty faculty = processFaculty(fileReader.nextLine());
 				boolean duplicate = false;
 
 				// Check that the Faculty from the current line has not already been added.
 				for (int i = 0; i < facultyList.size(); i++) {
-					s = facultyList.get(i);
-					if (faculty.equals(s)) {
+					Faculty s = facultyList.get(i);
+					if ( faculty.getFirstName().equals(s.getFirstName()) && faculty.getLastName().equals(s.getLastName()) ) {
 						duplicate = true;
-						i = facultyList.size(); // No need to continue checking if we already found a duplicate.
 					}
 				}
-
+				
 				// If the Faculty was unique, add it the the LinkedList
 				if (!duplicate) {
 					facultyList.add(faculty);
@@ -90,34 +86,33 @@ public class FacultyRecordIO {
 		Scanner reader = new Scanner(line); // Scanner to read file line
 		reader.useDelimiter(","); // Values in file are separated by commas
 
-		// Get the fields of Faculty
-		String firstName = reader.next();
-		String lastName = reader.next();
-		String id = reader.next();
-		String email = reader.next();
-
-		// If there is an int next in the line, close the Scanner; throw an Exception.
-		if (reader.hasNextInt()) {
-			reader.close(); // Always close what you open
-			throw new IllegalArgumentException();
-		}
-
-		String hashedPassword = reader.next();
-		int maxCourses;
-		Faculty faculty; // Placeholder variable for Faculty we are trying to create.
-
-		// If there is a maxCourses number, create a Faculty with it.
-		// Otherwise, throw an IllegalArgumentException.
-		if (reader.hasNextInt()) {
-			maxCourses = reader.nextInt();
-			faculty = new Faculty(firstName, lastName, id, email, hashedPassword, maxCourses);
-		} else {
+		try {
+			String first = "";
+			String last = "";
+			String id = "";
+			String email = "";
+			String hashedPw = "";
+			
+			if(reader.hasNext()) first = reader.next();
+			if(reader.hasNext()) last = reader.next();
+			if(reader.hasNext()) id = reader.next();
+			if(reader.hasNext()) email = reader.next();
+			if(reader.hasNext()) hashedPw = reader.next();
+			
+			int maxCredits = 0;
+			
+			if(reader.hasNextInt()) maxCredits = reader.nextInt();
+			else {
+				reader.close();
+				throw new IllegalArgumentException();
+			}
+			
 			reader.close();
+			return new Faculty(first, last, id, email, hashedPw, maxCredits);
+		} catch(NoSuchElementException e) {
 			throw new IllegalArgumentException();
 		}
-
-		reader.close(); // Always close what you open
-		return faculty;
+		
 	}
 
 	/**
