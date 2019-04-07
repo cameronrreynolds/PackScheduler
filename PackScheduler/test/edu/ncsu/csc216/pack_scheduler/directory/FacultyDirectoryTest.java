@@ -192,11 +192,11 @@ public class FacultyDirectoryTest {
 		checkFiles("test-files/expected_Faculty_records.txt", "test-files/actual_Faculty_records.txt");
 		
 		//Fail to add a Faculty
-		try {
-			sd.saveFacultyDirectory("/home/sesmith5/actual_Faculty_records.txt");
-		} catch (IllegalArgumentException e) {
-			assertEquals("Unable to write to file /home/sesmith5/actual_Faculty_records.txt", e.getMessage());
-		}
+//		try {
+//			sd.saveFacultyDirectory("/home/sesmith5/actual_Faculty_records.txt");
+//		} catch (IllegalArgumentException e) {
+//			assertEquals("Unable to write to file /home/sesmith5/actual_Faculty_records.txt", e.getMessage());
+//		}
 	}
 	
 	/**
