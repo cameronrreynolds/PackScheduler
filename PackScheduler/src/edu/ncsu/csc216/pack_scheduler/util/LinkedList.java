@@ -88,12 +88,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	 * @return the list iterator
 	 */
 	public ListIterator<E> listIterator(int index) {
-		try {
-			LinkedListIterator ret = new LinkedListIterator(index);
-			return ret;
-		} catch(IndexOutOfBoundsException e) {
-			throw new IllegalArgumentException();
-		}
+		return new LinkedListIterator(index);
 	}
 	
 	
