@@ -81,7 +81,7 @@ public class FacultyRecordIO {
 	 *             Faculty
 	 * @return a Faculty object from the information in the line.
 	 */
-	private static Faculty processFaculty(String line) {
+	public static Faculty processFaculty(String line) {
 		// If the line is empty or null throw an IllegalArgumentException
 		if (line == null || line.equals("")) {
 			throw new IllegalArgumentException();

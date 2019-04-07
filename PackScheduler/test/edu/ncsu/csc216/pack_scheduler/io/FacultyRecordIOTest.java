@@ -35,5 +35,34 @@ public class FacultyRecordIOTest {
 		}
 	   
 	}
+	
+	/**
+	 * This tests some failure cases
+	 */
+	@Test
+	public void testProcess() {
+		try {
+			FacultyRecordIO.processFaculty(null);
+			fail();
+		} catch(IllegalArgumentException e) {
+			// do nothing, test passes
+		}
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
