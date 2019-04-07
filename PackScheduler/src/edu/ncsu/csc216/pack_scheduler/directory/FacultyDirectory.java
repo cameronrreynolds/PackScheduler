@@ -194,9 +194,8 @@ public class FacultyDirectory {
 	 */
 	public Faculty getFacultyById(String id) {
 		for(int i = 0; i < facultyDirectory.size(); i++) {
-			if(id.equals(facultyDirectory.get(i).getId())) {
-				return facultyDirectory.get(i);
-			}
+			Faculty f = facultyDirectory.get(i);
+			if(f.getId().equals(id)) return f;
 		}
 		return null;
 	}

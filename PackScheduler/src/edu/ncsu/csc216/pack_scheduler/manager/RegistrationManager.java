@@ -50,6 +50,7 @@ public class RegistrationManager {
 		createRegistrar();
 		courseCatalog = new CourseCatalog();
 		studentDirectory = new StudentDirectory();
+		facultyDirectory = new FacultyDirectory();
 	}
 
 	/**
@@ -152,7 +153,7 @@ public class RegistrationManager {
 				}
 			} else if (registrar.getId().equals(id)) {
 					MessageDigest digest;
-					try {
+					try { 
 						digest = MessageDigest.getInstance(HASH_ALGORITHM);
 						digest.update(password.getBytes());
 						String localHashPW = new String(digest.digest());
