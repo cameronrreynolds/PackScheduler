@@ -7,7 +7,6 @@ import java.security.NoSuchAlgorithmException;
 
 import edu.ncsu.csc216.pack_scheduler.io.FacultyRecordIO;
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
-import edu.ncsu.csc216.pack_scheduler.user.Student;
 import edu.ncsu.csc216.pack_scheduler.user.User;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
@@ -67,7 +66,7 @@ public class FacultyDirectory {
 	 * @param email          faculty's email
 	 * @param password       faculty's password
 	 * @param repeatPassword faculty's repeated password
-	 * @param maxCredits     faculty's max credits.
+	 * @param maxCourses     faculty's max credits.
 	 * @return true if added
 	 * @throws IllegalArgumentException if the passwords are null, empty strings,
 	 *                                  cannot be hashed, or don't match
