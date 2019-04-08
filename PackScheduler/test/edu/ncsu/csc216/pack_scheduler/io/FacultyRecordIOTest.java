@@ -6,9 +6,9 @@ import java.io.IOException;
 
 import org.junit.Test;
 
-import edu.ncsu.csc216.collections.list.SortedList;
+
 import edu.ncsu.csc216.pack_scheduler.user.Faculty;
-import edu.ncsu.csc216.pack_scheduler.user.Student;
+
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 /**
  * This class tests the FacultyRecordIO class and its methods

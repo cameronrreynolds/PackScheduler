@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
  * This class represents a custom LinkedList. In this linked list, it can not have any duplicates or
  * null values
  * @author Michael, Matthew, Cameron
- *
+ *@param <E> the type of the linked list
  */
 public class LinkedList<E> extends AbstractSequentialList<E> {
 	/** This represents the front of the list */
@@ -29,6 +29,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 	}
 	/**
 	 * This method returns the current size of the Linked list
+	 * @return the size of the list
 	 */
 	public int size() {
 		return size;
@@ -142,7 +143,7 @@ public class LinkedList<E> extends AbstractSequentialList<E> {
 		 */
 		public boolean hasNext() {
 			if(next.next != null) return true;
-			else return false;
+			return false;
 		}
 		/**
 		 * This method determines if there is a prev node. There is a 

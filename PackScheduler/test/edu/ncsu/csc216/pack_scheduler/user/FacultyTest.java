@@ -19,15 +19,16 @@ public class FacultyTest {
 	 */
 	@Test
 	public void testConstructor() {
+		Faculty f;
 		try {
-			Faculty f = new Faculty("Michael", "Adamik", "madamik", "madamik@ncsu.edu", "pw", 4);
+			f = new Faculty("Michael", "Adamik", "madamik", "madamik@ncsu.edu", "pw", 4);
 			fail();
 		} catch(IllegalArgumentException e) {
-			//test passes
+			// do nothing, test passes
 		}
 		
 		try {
-			Faculty f = new Faculty("Michael", "Adamik", "madamik", "madamik@ncsu.edu", "pw", 1);
+			f = new Faculty("Michael", "Adamik", "madamik", "madamik@ncsu.edu", "pw", 1);
 			assertEquals(1, f.getMaxCourses());
 		} catch(IllegalArgumentException e) {
 			fail();
