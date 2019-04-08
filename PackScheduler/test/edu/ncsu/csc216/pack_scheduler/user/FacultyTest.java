@@ -24,7 +24,7 @@ public class FacultyTest {
 			f = new Faculty("Michael", "Adamik", "madamik", "madamik@ncsu.edu", "pw", 4);
 			fail();
 		} catch(IllegalArgumentException e) {
-			
+			// do nothing, test passes
 		}
 		
 		try {
