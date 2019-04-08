@@ -2,7 +2,7 @@ package edu.ncsu.csc216.pack_scheduler.util;
 
 import static org.junit.Assert.*;
 
-import java.util.ListIterator;
+
 
 import org.junit.Test;
 /**
