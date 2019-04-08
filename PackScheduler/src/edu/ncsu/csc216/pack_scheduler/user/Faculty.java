@@ -1,5 +1,7 @@
 package edu.ncsu.csc216.pack_scheduler.user;
 
+import edu.ncsu.csc216.pack_scheduler.user.schedule.FacultySchedule;
+
 /**
  * This class defines a faculty object.
  * 
@@ -14,6 +16,8 @@ public class Faculty extends User {
 	private static final int MIN_COURSES = 1;
 	/** This represents the max courses value */
 	private static final int MAX_COURSES = 3;
+	/** The faculty's schedule. */
+	private FacultySchedule schedule;
 	
 	/**
 	 * Creates a new Faculty object.
@@ -29,6 +33,15 @@ public class Faculty extends User {
 		super(firstName, lastName, id, email, password);
 		setMaxCourses(maxCourses);
 	}
+	
+	/**
+	 * Getter method for the faculty's schedule.
+	 * 
+	 * @return The faculty's schedule.
+	 */
+	public FacultySchedule getSchedule() {
+		return this.schedule;
+	}
 
     /**
      * Sets the maximum number of courses the faculty can teach.
@@ -41,12 +54,24 @@ public class Faculty extends User {
 	}
 	
 	/**
-	 * Getter for the maimum courses the faculty can teach.
+	 * Getter for the maximum courses the faculty can teach.
 	 * 
 	 * @return The number of courses.
 	 */
 	public int getMaxCourses() {
 		return maxCourses;
+	}
+	
+	/**
+	 * Determines if the faculty has an overloaded schedule.
+	 * 
+	 * @return If the schedule is overloaded or not.
+	 */
+	public boolean isOverloaded() {
+		if (schedule.getNumScheduledCourses() > maxCourses) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

@@ -276,6 +276,58 @@ public class RegistrationManager {
 	        //do nothing 
 	    }
 	}
+	
+	/**
+	 * Adds a faculty to a course.
+	 * 
+	 * @param course The course with new faculty.
+	 * @param faculty The faculty to be added to the course.
+	 * @return If the operation was successful.
+	 */
+	public boolean addFacultyToCourse(Course course, Faculty faculty) {
+		if (currentUser == null || !(currentUser instanceof Registrar)) {
+			throw new IllegalArgumentException("Illegal Action");
+		}
+		try {
+			course.setInstructorId(faculty.getId());
+			faculty.getSchedule().addCourseToSchedule(course);
+			return true;
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * Removes faculty from a course.
+	 * 
+	 * @param course The course with the faculty to be removed.
+	 * @param faculty The faculty to be removed.
+	 * @return If the operation was successful.
+	 */
+	public boolean removeFacultyFromCourse(Course course, Faculty faculty) {
+		if (currentUser == null || !(currentUser instanceof Registrar)) {
+			throw new IllegalArgumentException("Illegal Action");
+		}
+		try {
+			course.setInstructorId(null);
+			faculty.getSchedule().removeCourseFromSchedule(course);
+			return true;
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * Resets the faculty's schedule.
+	 * 
+	 * @param faculty The faculty who's schedule is to be reset.
+	 */
+	public void resetFacultySchedule(Faculty faculty) {
+		if (currentUser == null || !(currentUser instanceof Registrar)) {
+			throw new IllegalArgumentException("Illegal Action");
+		}
+		faculty.getSchedule().resetSchedule();
+	}
 
 	/**
 	 * This class outlines a registrar as a child class of user.
