@@ -16,7 +16,7 @@ public class Faculty extends User {
 	private static final int MIN_COURSES = 1;
 	/** This represents the max courses value */
 	private static final int MAX_COURSES = 3;
-	/** The list of Course's this faculty teaches */ 
+	/** The faculty's schedule. */
 	private FacultySchedule schedule;
 	
 	/**
