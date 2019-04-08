@@ -16,11 +16,7 @@ public class Faculty extends User {
 	private static final int MIN_COURSES = 1;
 	/** This represents the max courses value */
 	private static final int MAX_COURSES = 3;
-<<<<<<< HEAD
-	/** The faculty's schedule. */
-=======
 	/** The list of Course's this faculty teaches */ 
->>>>>>> branch 'master' of https://github.ncsu.edu/engr-csc216-spring2019/csc216-203-LLL-06.git
 	private FacultySchedule schedule;
 	
 	/**
@@ -120,22 +116,4 @@ public class Faculty extends User {
 		return getFirstName() + "," + getLastName() + "," + getId() + "," + getEmail() + "," + getPassword() + ","
 				+ Integer.toString(maxCourses);
 	}
-	
-	/**
-	 * Returns the schedule of Course's that the faculty teaches.
-	 * 
-	 * @return The schedule of Course's
-	 */
-	public FacultySchedule getSchedule() {
-		return schedule;
-	}
-	
-	public boolean isOverloaded() {
-		if(schedule.getNumScheduledCourses() > maxCourses) {
-			return true;
-		}
-		return false;
-		
-	}
-	
 }
