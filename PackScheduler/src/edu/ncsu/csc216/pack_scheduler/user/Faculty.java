@@ -116,22 +116,4 @@ public class Faculty extends User {
 		return getFirstName() + "," + getLastName() + "," + getId() + "," + getEmail() + "," + getPassword() + ","
 				+ Integer.toString(maxCourses);
 	}
-	
-	/**
-	 * Returns the schedule of Course's that the faculty teaches.
-	 * 
-	 * @return The schedule of Course's
-	 */
-	public FacultySchedule getSchedule() {
-		return schedule;
-	}
-	
-	public boolean isOverloaded() {
-		if(schedule.getNumScheduledCourses() > maxCourses) {
-			return true;
-		}
-		return false;
-		
-	}
-	
 }
