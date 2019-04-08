@@ -43,7 +43,7 @@ public class LinkedListRecursive<E> {
 	 * @return true if the element was added
 	 */
 	public boolean add(E element) {
-		if(contains(element)) throw new IllegalArgumentException();
+		if(contains(element)) throw new IllegalArgumentException(); 
 		if(isEmpty()) {
 			front = new ListNode(element, null);
 			size++;
@@ -257,8 +257,8 @@ public class LinkedListRecursive<E> {
 		 * @return true if the element is in the list, false otherwise
 		 */
 		public boolean contains(E element) {
+			if(data.equals(element)) return true;
 			if(next == null) return false;
-			else if(next.equals(element)) return true;
 			return next.contains(element);
 			
 		}

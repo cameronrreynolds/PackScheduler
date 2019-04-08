@@ -6,14 +6,14 @@ import java.util.ListIterator;
 
 import org.junit.Test;
 /**
- * Tests the ArrayList Class
+ * Tests the Linked list recrusive Class
  * @author Michael, Matthew, Cameron
  *
  */
 public class LinkedListRecursiveTest {
 
 	/**
-	 * Tests the constructor for the ArrayList Class
+	 * Tests the constructor for the linked list recursive Class
 	 */
 	@Test
 	public void testArrayList() {
@@ -22,9 +22,47 @@ public class LinkedListRecursiveTest {
 		LinkedListRecursive<Integer> test2 = new LinkedListRecursive<Integer>();
 		assertNotNull(test2);
 	}
+	
+	/**
+	 * Tests the add method
+	 */
+	@Test
+	public void testAddatEnd2() {
+		LinkedListRecursive<String> test = new LinkedListRecursive<String>();
+		test.add("end");
+		assertEquals("end", test.get(0));
+		assertTrue(test.contains("end"));
+		try {
+			test.add("end");
+			fail();
+		} catch(IllegalArgumentException e) {
+			// do nothing, test passes
+		}
+	}
+	
+	/**
+	 * Tests the remove an element method
+	 */
+	@Test
+	public void testRemoveElementandStartIndex() {
+		LinkedListRecursive<String> test = new LinkedListRecursive<String>();
+		test.add("first");
+		test.add("second");
+		test.add("third");
+		test.remove("second");
+		assertEquals("first", test.get(0)); 
+		assertEquals("third", test.get(1));
+		test.remove("first");
+		assertEquals("third", test.get(0));
+		test.add("fourth");
+		test.remove(0);
+		assertEquals("fourth", test.get(0));
+		test.add("last");
+		test.remove(1);
+	}
 
 	/**
-	 * Tests the add method for the ArrayList Class
+	 * Tests the add method for the linked list recursive Class
 	 */
 	@Test
 	public void testAdd() {
@@ -71,7 +109,7 @@ public class LinkedListRecursiveTest {
 	}
 	
 	/**
-	 * Tests the remove method for the ArrayList Class
+	 * Tests the remove method for the linked list recursive Class
 	 */
 	@Test
 	public void testRemove() {
@@ -88,7 +126,7 @@ public class LinkedListRecursiveTest {
 	}
 	
 	/**
-	 * Tests the get method for the ArrayList Class
+	 * Tests the get method for the linked list recursive Class
 	 */
 	@Test
 	public void testGet() {
@@ -98,7 +136,7 @@ public class LinkedListRecursiveTest {
 	}
 	
 	/**
-	 * Tests the set method for the ArrayList Class
+	 * Tests the set method for the linked list recursive Class
 	 */
 	@Test
 	public void testSet() {
@@ -128,7 +166,7 @@ public class LinkedListRecursiveTest {
 	}
 	
 	/**
-	 * Tests the size method for the ArrayList Class
+	 * Tests the size method for the linked list recursive Class
 	 */
 	@Test
 	public void testSize() {
@@ -180,7 +218,7 @@ public class LinkedListRecursiveTest {
 	}
 	
 	/**
-	 * Tests the add method for the LinkedList Class
+	 * Tests the add method for the linked list recursive Class
 	 */
 	@Test
 	public void testAddatEnd() {
