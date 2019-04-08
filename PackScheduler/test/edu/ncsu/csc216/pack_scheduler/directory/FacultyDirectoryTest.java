@@ -111,11 +111,11 @@ public class FacultyDirectoryTest {
 		
 		//Test valid Faculty
 		sd.addFaculty(FIRST_NAME, LAST_NAME, ID, EMAIL, PASSWORD, PASSWORD, MAX_CREDITS);
-		String [][] FacultyDirectory = sd.getFacultyDirectory();
-		assertEquals(1, FacultyDirectory.length);
-		assertEquals(FIRST_NAME, FacultyDirectory[0][0]);
-		assertEquals(LAST_NAME, FacultyDirectory[0][1]);
-		assertEquals(ID, FacultyDirectory[0][2]);
+		String [][] facultyDirectory = sd.getFacultyDirectory();
+		assertEquals(1, facultyDirectory.length);
+		assertEquals(FIRST_NAME, facultyDirectory[0][0]);
+		assertEquals(LAST_NAME, facultyDirectory[0][1]);
+		assertEquals(ID, facultyDirectory[0][2]);
 		
 		//Test invalid password
 		try {
@@ -168,11 +168,11 @@ public class FacultyDirectoryTest {
 		sd.loadFacultyFromFile(VALID_TEST_FILE);
 		assertEquals(8, sd.getFacultyDirectory().length);
 		assertTrue(sd.removeFaculty("fmeadow"));
-		String [][] FacultyDirectory = sd.getFacultyDirectory();
-		assertEquals(7, FacultyDirectory.length);
-		assertEquals("Norman", FacultyDirectory[5][0]);
-		assertEquals("Brady", FacultyDirectory[5][1]);
-		assertEquals("nbrady", FacultyDirectory[5][2]);
+		String [][] facultyDirectory = sd.getFacultyDirectory();
+		assertEquals(7, facultyDirectory.length);
+		assertEquals("Norman", facultyDirectory[5][0]);
+		assertEquals("Brady", facultyDirectory[5][1]);
+		assertEquals("nbrady", facultyDirectory[5][2]);
 	}
 
 	/**
@@ -196,26 +196,26 @@ public class FacultyDirectoryTest {
 //		}
 //	}
 	
-	/**
-	 * Helper method to compare two files for the same contents
-	 * @param expFile expected output
-	 * @param actFile actual output
-	 */
-	private void checkFiles(String expFile, String actFile) {
-		try {
-			Scanner expScanner = new Scanner(new FileInputStream(expFile));
-			Scanner actScanner = new Scanner(new FileInputStream(actFile));
-			
-			while (expScanner.hasNextLine()) {
-				assertEquals(expScanner.nextLine(), actScanner.nextLine());
-			}
-			
-			expScanner.close();
-			actScanner.close();
-		} catch (IOException e) {
-			fail("Error reading files.");
-		}
-	}
+//	/**
+//	 * Helper method to compare two files for the same contents
+//	 * @param expFile expected output
+//	 * @param actFile actual output
+//	 */
+//	private void checkFiles(String expFile, String actFile) {
+//		try {
+//			Scanner expScanner = new Scanner(new FileInputStream(expFile));
+//			Scanner actScanner = new Scanner(new FileInputStream(actFile));
+//			
+//			while (expScanner.hasNextLine()) {
+//				assertEquals(expScanner.nextLine(), actScanner.nextLine());
+//			}
+//			
+//			expScanner.close();
+//			actScanner.close();
+//		} catch (IOException e) {
+//			fail("Error reading files.");
+//		}
+//	}
 	
 	/**
 	 * Tests the getFacultyById method for several different cases
