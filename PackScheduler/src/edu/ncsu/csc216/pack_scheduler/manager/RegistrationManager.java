@@ -288,13 +288,7 @@ public class RegistrationManager {
 		if (currentUser == null || !(currentUser instanceof Registrar)) {
 			throw new IllegalArgumentException("Illegal Action");
 		}
-		try {
-			course.setInstructorId(faculty.getId());
-			faculty.getSchedule().addCourseToSchedule(course);
-			return true;
-		} catch (IllegalArgumentException e) {
-			return false;
-		}
+		return faculty.getSchedule().addCourseToSchedule(course);
 	}
 	
 	/**
@@ -308,13 +302,7 @@ public class RegistrationManager {
 		if (currentUser == null || !(currentUser instanceof Registrar)) {
 			throw new IllegalArgumentException("Illegal Action");
 		}
-		try {
-			course.setInstructorId(null);
-			faculty.getSchedule().removeCourseFromSchedule(course);
-			return true;
-		} catch (IllegalArgumentException e) {
-			return false;
-		}
+		return faculty.getSchedule().removeCourseFromSchedule(course);
 	}
 	
 	/**

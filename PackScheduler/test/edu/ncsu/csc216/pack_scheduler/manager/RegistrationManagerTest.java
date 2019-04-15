@@ -211,6 +211,7 @@ public class RegistrationManagerTest {
 		} catch(IllegalArgumentException e) {
 			assertEquals("Illegal Action", e.getMessage());
 		}
+	
 	}
 	
 	/**
@@ -223,7 +224,7 @@ public class RegistrationManagerTest {
 			fail();
 		} catch(IllegalArgumentException e) {
 			assertEquals("Illegal Action", e.getMessage());
-		}
+		} 
 	}
 
 	/**
