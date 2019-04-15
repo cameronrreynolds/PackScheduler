@@ -49,12 +49,11 @@ public class CourseRecordIO {
 				}
 				
 				//if not a duplicate, add it to the list
-				if (!duplicate && c != null) {
+				if (!duplicate) {
 					courses.add(c);
 				}
 				
-				//reset duplicate if it changed
-				duplicate = false;
+				
 				
 			} catch (IllegalArgumentException e) {
 				// If it isn't valid, skip it.
