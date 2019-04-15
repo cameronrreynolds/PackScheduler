@@ -345,22 +345,30 @@ public class CourseCatalogPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadCourseCatalog) {
-			String fileName = getFileName(true);
 			try {
-				catalog.loadCoursesFromFile(fileName);
-				courseCatalogTableModel.updateData();
-				scrollCourseCatalog.revalidate();
-				scrollCourseCatalog.repaint();
-				courseCatalogTableModel.fireTableDataChanged();
-			} catch (IllegalArgumentException iae) {
-				JOptionPane.showMessageDialog(this, iae.getMessage());
+				String fileName = getFileName(true);
+				try {
+					catalog.loadCoursesFromFile(fileName);
+					courseCatalogTableModel.updateData();
+					scrollCourseCatalog.revalidate();
+					scrollCourseCatalog.repaint();
+					courseCatalogTableModel.fireTableDataChanged();
+				} catch (IllegalArgumentException iae) {
+					JOptionPane.showMessageDialog(this, iae.getMessage());
+				}
+			} catch (IllegalStateException error) {
+				JOptionPane.showMessageDialog(this, "Action canceled", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (e.getSource() == btnSaveCourseCatalog) {
-			String fileName = getFileName(false);
 			try {
-				catalog.saveCourseCatalog(fileName);
-			} catch (IllegalArgumentException iae) {
-				JOptionPane.showMessageDialog(this, iae.getMessage());
+				String fileName = getFileName(false);
+				try {
+					catalog.saveCourseCatalog(fileName);
+				} catch (IllegalArgumentException iae) {
+					JOptionPane.showMessageDialog(this, iae.getMessage());
+				}
+			} catch (IllegalStateException error) {
+				JOptionPane.showMessageDialog(this, "Action canceled", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (e.getSource() == btnNewCourseCatalog) {
 			catalog.newCourseCatalog();

@@ -220,22 +220,30 @@ public class FacultyDirectoryPanel extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnLoadFacultyList) {
-			String fileName = getFileName(true);
 			try {
-				facultyDirectory.loadFacultyFromFile(fileName);
-				facultyDirectoryTableModel.updateData();
-				scrollFacultyDirectory.revalidate();
-				scrollFacultyDirectory.repaint();
-				facultyDirectoryTableModel.fireTableDataChanged();
-			} catch (IllegalArgumentException iae) {
-				JOptionPane.showMessageDialog(this, iae.getMessage());
+				String fileName = getFileName(true);
+				try {
+					facultyDirectory.loadFacultyFromFile(fileName);
+					facultyDirectoryTableModel.updateData();
+					scrollFacultyDirectory.revalidate();
+					scrollFacultyDirectory.repaint();
+					facultyDirectoryTableModel.fireTableDataChanged();
+				} catch (IllegalArgumentException iae) {
+					JOptionPane.showMessageDialog(this, iae.getMessage());
+				}
+			} catch (IllegalStateException error) {
+				JOptionPane.showMessageDialog(this, "Action canceled", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (e.getSource() == btnSaveFacultyList) {
-			String fileName = getFileName(false);
 			try {
-				facultyDirectory.saveFacultyDirectory(fileName);
-			} catch (IllegalArgumentException iae) {
-				JOptionPane.showMessageDialog(this, iae.getMessage());
+				String fileName = getFileName(false);
+				try {
+					facultyDirectory.saveFacultyDirectory(fileName);
+				} catch (IllegalArgumentException iae) {
+					JOptionPane.showMessageDialog(this, iae.getMessage());
+				}
+			} catch (IllegalStateException error) {
+				JOptionPane.showMessageDialog(this, "Action canceled", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (e.getSource() == btnNewFacultyList) {
 			facultyDirectory.newFacultyDirectory();
