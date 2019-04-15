@@ -44,13 +44,7 @@ public class LinkedListRecursive<E> {
 	 */
 	public boolean add(E element) {
 		if(contains(element)) throw new IllegalArgumentException(); 
-		if(isEmpty()) {
-			front = new ListNode(element, null);
-			size++;
-			return true;
-		}
-		front.add(size, element);
-		size++;
+		add(size, element);
 		return true;
 	}
 	
@@ -64,17 +58,23 @@ public class LinkedListRecursive<E> {
 		if(contains(element)) throw new IllegalArgumentException();
 		if(index < 0 || index > size) throw new IndexOutOfBoundsException();
 		if(element == null) throw new NullPointerException();
-		if(index == 0) {
-			front = new ListNode(element, front);
-			size++;
-			return;
-		}
-		else {
-			front.add(index, element);
-			size++;
-		}
+		add(index, element, 0, front);
+		size++;
+		
 	}
 	
+	private void add(int index, E element, int currIndex, ListNode head) {
+		if(index == 0) front = new ListNode(element, front);
+		else if(front == null) throw new IllegalArgumentException();
+		else if(currIndex + 1 == index) {
+			head.next = new ListNode(element, head.next);
+			return;
+		} else {
+			add(index, element, currIndex + 1, head.next);
+		}
+		
+	}
+
 	/**
 	 * This method gets and returns the element at the
 	 * given index
@@ -83,8 +83,17 @@ public class LinkedListRecursive<E> {
 	 */
 	public E get(int index) {
 		if(index < 0 || index >= size) throw new IndexOutOfBoundsException();
-		return front.get(index);
+		return get(front, index);
 	}
+	
+	
+	
+	
+	private E get(ListNode head, int index) {
+		if(index == 0) return head.data;
+		else return get(head.next, index - 1);
+	}
+
 	/**
 	 * This method removes the given element from the list
 	 * If the element was removed, this will return true
@@ -121,16 +130,25 @@ public class LinkedListRecursive<E> {
 	public E remove(int index) {
 		if(index < 0 || index >= size) throw new IndexOutOfBoundsException();
 		if(index == 0) {
-			E data = front.data;
+			E ret = front.data;
 			front = front.next;
 			size--;
-			return data;
+			return ret;
 		} else {
-			E val = front.remove(index);
-			size--;
-			return val;
+			return remove(index, front);
 		}
 	}
+	private E remove(int index, ListNode head) {
+		if(index == 1) {
+			E ret = head.next.data;
+			head.next = head.next.next;
+			size--;
+			return ret;
+		} else {
+			return remove(index - 1, head.next);
+		}
+	}
+
 	/**
 	 * This method replaces the element at the given index with
 	 * the given element
@@ -142,9 +160,19 @@ public class LinkedListRecursive<E> {
 		if(index < 0 || index >= size) throw new IndexOutOfBoundsException();
 		if(element == null) throw new NullPointerException();
 		if(contains(element)) throw new IllegalArgumentException();
-		return front.set(index, element);
+		return set(index, element, front);
 	}
 	
+	private E set(int index, E element, ListNode head) {
+		if(index == 0) {
+			E ret = head.data;
+			head.data = element;
+			return ret;
+		} else {
+			return set(index - 1, element, head.next);
+		}
+	}
+
 	/**
 	 * This method determines if the element given
 	 * is in the list
@@ -152,11 +180,17 @@ public class LinkedListRecursive<E> {
 	 * @return true if the element is in the list, false otherwise
 	 */
 	public boolean contains(E element) {
-		if(isEmpty()) return false;
-		return front.contains(element);
+		return contains(front, element);
 	}
 	
 	
+	private boolean contains(ListNode head, E element) {
+		if(head == null) return false;
+		else if(head.data.equals(element)) return true;
+		else return contains(head.next, element);
+	}
+
+
 	/**
 	 * This class represents one element in the list
 	 * @author Michael, Matthew, Cameron
@@ -179,101 +213,7 @@ public class LinkedListRecursive<E> {
 			this.next = next;
 		}
 		
-		/**
-		 * This method recursively adds the element 
-		 * to the given index
-		 * @param index the index to add to
-		 * @param element the element to add
-		 */
-		public void add(int index, E element) {
-			if(index == 1) {
-				next = new ListNode(element, next);
-				return;
-			}
-			else {
-				if(next == null) {
-					next = new ListNode(element, null);
-				}
-				next.add(index - 1, element);
-			}
-		}
-		/**
-		 * This returns the element at the given index
-		 * @param index the index of the element to get
-		 * @return the element at the give index
-		 */
-		public E get(int index) {
-			if(index == 0) {
-				return data;
-			} else {
-				return next.get(index - 1);
-			}
-		}
-		/**
-		 * This method removes the element at the given index
-		 * @param index the index of the element to remove
-		 */
-		public E remove(int index) {
-			if(index == 1) {
-				if(next.next == null) {
-					E val = next.data;
-					next = null;
-					return val;
-				}
-				E val = next.data;
-				next = next.next;
-				return val;
-			}
-			else {
-				return next.remove(index - 1);
-			}
-		}
-		/**
-		 * This removes the element from the list
-		 * @param element the element to remove
-		 * @return true if the element was removed
-		 */
-		public boolean remove(E element) {
-			if(next == null) return false;
-			if(next.data.equals(element)) {
-				if(next.next == null) {
-					next = null;
-					return true;
-				} else {
-					next = next.next;
-					return true;
-				}
-			} else {
-				return next.remove(element);
-			}
-		}
-		/**
-		 * This method replaces the element at the given
-		 * index with the given element
-		 * @param index the index of the element to replace 
-		 * @param element the element to put into the list
-		 */
-		public E set(int index, E element) {
-			if(index == 0) {
-				E ret = data;
-				data = element;
-				return ret;
-			} else {
-				return next.set(index - 1, element);
-			}
-		}
-		/**
-		 * This method determines if the given element
-		 * is in the list 
-		 * @param element the element to check for
-		 * @return true if the element is in the list, false otherwise
-		 */
-		public boolean contains(E element) {
-			if(data.equals(element)) return true;
-			if(next == null) return false;
-			return next.contains(element);
-			
-		}
+		
 	}
 
 }
