@@ -100,7 +100,7 @@ public class RegistrationManagerTest {
 		} catch(IllegalArgumentException e) {
 			// do nothing, test passes
 		}
-		assertEquals(1922464006, manager.hashCode());
+		assertEquals(186276003, manager.hashCode());
 	}
 
 	/**

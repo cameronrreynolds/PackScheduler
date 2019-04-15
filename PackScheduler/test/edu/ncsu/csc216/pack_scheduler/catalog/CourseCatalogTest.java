@@ -22,16 +22,16 @@ import edu.ncsu.csc216.pack_scheduler.course.Course;
 public class CourseCatalogTest {
 
 	/** Expected results for valid courses */
-	private final String validCourse1 = "CSC116,Intro to Programming - Java,001,3,jdyoung2,10,MW,910,1100";
-	private final String validCourse2 = "CSC116,Intro to Programming - Java,002,3,spbalik,10,MW,1120,1310";
-	private final String validCourse3 = "CSC116,Intro to Programming - Java,003,3,tbdimitr,10,TH,1120,1310";
+	private final String validCourse1 = "CSC116,Intro to Programming - Java,001,3,null,10,MW,910,1100";
+	private final String validCourse2 = "CSC116,Intro to Programming - Java,002,3,null,10,MW,1120,1310";
+	private final String validCourse3 = "CSC116,Intro to Programming - Java,003,3,null,10,TH,1120,1310";
 	// private final String validCourse4 = "CSC116,Intro to Programming -
 	// Java,002,3,jtking,10,TH,910,1100";
-	private final String validCourse4 = "CSC216,Programming Concepts - Java,001,4,sesmith5,10,TH,1330,1445";
-	private final String validCourse5 = "CSC216,Programming Concepts - Java,002,4,jtking,10,MW,1330,1445";
-	private final String validCourse6 = "CSC216,Programming Concepts - Java,601,4,jep,10,A";
-	private final String validCourse7 = "CSC226,Discrete Mathematics for Computer Scientists,001,3,tmbarnes,10,MWF,935,1025";
-	private final String validCourse8 = "CSC230,C and Software Tools,001,3,dbsturgi,10,MW,1145,1300";
+	private final String validCourse4 = "CSC216,Programming Concepts - Java,001,4,null,10,TH,1330,1445";
+	private final String validCourse5 = "CSC216,Programming Concepts - Java,002,4,null,10,MW,1330,1445";
+	private final String validCourse6 = "CSC216,Programming Concepts - Java,601,4,null,10,A";
+	private final String validCourse7 = "CSC226,Discrete Mathematics for Computer Scientists,001,3,null,10,MWF,935,1025";
+	private final String validCourse8 = "CSC230,C and Software Tools,001,3,null,10,MW,1145,1300";
 
 	/** Array to hold expected results */
 	// private final String[] validCourses = { validCourse1, validCourse2,
@@ -111,11 +111,11 @@ public class CourseCatalogTest {
 		// !name && section
 		// name && section
 		cc.removeCourseFromCatalog("CSC116", "003");
-		assertEquals(1, cc.getCourseCatalog().length + 1);
+		assertEquals(8, cc.getCourseCatalog().length + 1);
 
 		// !name && !section
 		cc.removeCourseFromCatalog("HON299", "001");
-		assertEquals(1, cc.getCourseCatalog().length + 1);
+		assertEquals(8, cc.getCourseCatalog().length + 1);
 	}
 
 	/**
