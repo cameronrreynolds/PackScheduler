@@ -30,7 +30,7 @@ public class CourseRecordIO {
 	 */
 	public static SortedList<Course> readCourseRecords(String nameOfFile) throws FileNotFoundException {
 		Scanner scan = new Scanner(new File(nameOfFile));
-		SortedList<Course> courses = new SortedList<>(); 
+		SortedList<Course> courses = new SortedList<>();
 		
 		boolean duplicate = false;
 		
@@ -49,11 +49,12 @@ public class CourseRecordIO {
 				}
 				
 				//if not a duplicate, add it to the list
-				if (!duplicate) {
+				if (!duplicate && c != null) {
 					courses.add(c);
 				}
 				
-				
+				//reset duplicate if it changed
+				duplicate = false;
 				
 			} catch (IllegalArgumentException e) {
 				// If it isn't valid, skip it.
