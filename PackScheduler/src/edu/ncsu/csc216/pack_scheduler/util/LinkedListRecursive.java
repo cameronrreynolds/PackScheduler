@@ -107,6 +107,7 @@ public class LinkedListRecursive<E> {
 	/**
 	 * This method removes the element at the given index
 	 * @param index the index to remove the element of
+	 * @return the value removed from the list
 	 */
 	public E remove(int index) {
 		if(index < 0 || index >= size) throw new IndexOutOfBoundsException();
@@ -126,6 +127,7 @@ public class LinkedListRecursive<E> {
 	 * the given element
 	 * @param index the index of the element to replace
 	 * @param element the new element 
+	 * @return the value that was replaced
 	 */
 	public E set(int index, E element) {
 		if(index < 0 || index >= size) throw new IndexOutOfBoundsException();
@@ -182,7 +184,7 @@ public class LinkedListRecursive<E> {
 				if(next == null) {
 					next = new ListNode(element, null);
 				}
-				next.add(index-1, element);
+				next.add(index - 1, element);
 			}
 		}
 		/**
@@ -204,13 +206,13 @@ public class LinkedListRecursive<E> {
 		public E remove(int index) {
 			if(index == 1) {
 				if(next.next == null) {
-					E data = next.data;
+					E val = next.data;
 					next = null;
-					return data;
+					return val;
 				}
-				E data = next.data;
+				E val = next.data;
 				next = next.next;
-				return data;
+				return val;
 			}
 			else {
 				return next.remove(index - 1);
@@ -247,7 +249,7 @@ public class LinkedListRecursive<E> {
 				data = element;
 				return ret;
 			} else {
-				return next.set(index-1, element);
+				return next.set(index - 1, element);
 			}
 		}
 		/**

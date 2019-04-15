@@ -17,8 +17,8 @@ import edu.ncsu.csc216.pack_scheduler.manager.RegistrationManager;
  * @author Elias Robertson, William Boyles, and Joseph Dasilva
  */
 public class CourseRecordIO {
-	/** The max length of a course string split up */
-	private static int courseStringLength = 9;
+//	/** The max length of a course string split up */
+//	private static int courseStringLength = 9;
 
 	/**
 	 * Reads course records from a file and returns a list of courses from the file
