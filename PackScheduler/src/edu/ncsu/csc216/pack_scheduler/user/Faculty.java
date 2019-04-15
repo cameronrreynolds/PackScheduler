@@ -52,7 +52,7 @@ public class Faculty extends User {
 	public void setMaxCourses(int maxCourses) {
 		if(maxCourses < MIN_COURSES || maxCourses > MAX_COURSES) throw new IllegalArgumentException("Invalid max courses");
 		this.maxCourses = maxCourses;
-	}
+	} 
 	
 	/**
 	 * Getter for the maximum courses the faculty can teach.
@@ -98,13 +98,9 @@ public class Faculty extends User {
 		if (!super.equals(obj)) {
 			return false;
 		}
-		if (!(obj instanceof Faculty)) {
-			return false;
-		}
+		if(getClass() != obj.getClass()) return false;
 		Faculty other = (Faculty) obj;
-		if (maxCourses != other.maxCourses) {
-			return false;
-		}
+		if(maxCourses != other.maxCourses) return false;
 		return true;
 	}
 	

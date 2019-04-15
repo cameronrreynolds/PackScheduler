@@ -30,7 +30,7 @@ public class CourseRecordIO {
 	 */
 	public static SortedList<Course> readCourseRecords(String nameOfFile) throws FileNotFoundException {
 		Scanner scan = new Scanner(new File(nameOfFile));
-		SortedList<Course> courses = new SortedList<>();
+		SortedList<Course> courses = new SortedList<>(); 
 		
 		boolean duplicate = false;
 		

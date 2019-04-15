@@ -51,7 +51,7 @@ public class Course extends Activity implements Comparable<Course> {
 		setCredits(credits);
 		setInstructorId(instructorId);
 		this.roll = new CourseRoll(enrollmentCap, this);
-	}
+	} 
 
 	/**
 	 * Creates a course without start/end times.
