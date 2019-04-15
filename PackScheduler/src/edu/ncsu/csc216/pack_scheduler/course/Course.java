@@ -210,25 +210,26 @@ public class Course extends Activity implements Comparable<Course> {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null) {
-			return false;
-		}
-		if (!super.equals(obj))
-			return false;
-		if (this.getClass() != obj.getClass()) // This is not covered because there are no different subclasses of
-												// Activity
-			return false;
+		if (this == obj) return true;
+		if (!super.equals(obj)) return false;
+		if (this.getClass() != obj.getClass()) return false;
+
+		
+		
 		Course other = (Course) obj;
 		if (credits != other.credits)
 			return false;
-		if (!instructorId.equals(other.instructorId))
-			return false;
-		if (!name.equals(other.name))
-			return false;
-		if (!section.equals(other.section))
-			return false;
+		if(instructorId == null) {
+			if(other.instructorId != null) return false;
+		} else if(!instructorId.equals(other.instructorId)) return false;
+		if(name == null) {
+			if(other.name != null) return false;
+		} else if(!name.equals(other.name)) return false;
+		
+		if(section == null) {
+			if(other.section != null) return false;
+		} else if(!section.equals(other.section)) return false;
+		
 		return true;
 	}
 

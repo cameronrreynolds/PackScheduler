@@ -62,7 +62,7 @@ public class CourseCatalog {
 			}
 		}
 		return null;
-	}
+	} 
 
 	/**
 	 * Adds a course to the schedule, if allowed
