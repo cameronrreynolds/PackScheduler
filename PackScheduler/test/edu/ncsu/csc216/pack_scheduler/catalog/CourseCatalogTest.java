@@ -55,7 +55,7 @@ public class CourseCatalogTest {
 		Course course7 = cc.getCourseFromCatalog("CSC226", "001");
 		Course course8 = cc.getCourseFromCatalog("CSC230", "001");
 		Course course9 = cc.getCourseFromCatalog("JOSEPH", "001"); // should be null b/c it isn't in the catalog
-
+		System.out.println(course1);
 		assertEquals(course1.toString(), validCourse1);
 		assertEquals(course2.toString(), validCourse2);
 		assertEquals(course3.toString(), validCourse3);
@@ -111,11 +111,11 @@ public class CourseCatalogTest {
 		// !name && section
 		// name && section
 		cc.removeCourseFromCatalog("CSC116", "003");
-		assertEquals(8, cc.getCourseCatalog().length + 1);
+		assertEquals(1, cc.getCourseCatalog().length + 1);
 
 		// !name && !section
 		cc.removeCourseFromCatalog("HON299", "001");
-		assertEquals(8, cc.getCourseCatalog().length + 1);
+		assertEquals(1, cc.getCourseCatalog().length + 1);
 	}
 
 	/**

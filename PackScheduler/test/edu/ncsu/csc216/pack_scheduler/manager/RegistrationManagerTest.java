@@ -82,6 +82,26 @@ public class RegistrationManagerTest {
 		// one password is hashed and the other isn't
 
 	}
+	
+	/**
+	 * Tests the add faculty method
+	 */
+	@Test
+	public void testAddFaculty() {
+		try {
+			manager.addFacultyToCourse(null, null);
+		} catch(IllegalArgumentException e) {
+			// do nothing, test passes
+		}
+
+		
+		try {
+			manager.removeFacultyFromCourse(null, null);
+		} catch(IllegalArgumentException e) {
+			// do nothing, test passes
+		}
+		assertEquals(1922464006, manager.hashCode());
+	}
 
 	/**
 	 * Tests the login method.
