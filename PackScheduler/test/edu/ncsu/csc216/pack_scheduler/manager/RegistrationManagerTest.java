@@ -186,6 +186,45 @@ public class RegistrationManagerTest {
 		manager.logout();
 		assertFalse(currentLoggedIn.equals(manager.getCurrentUser()));
 	}
+	
+	/**
+	 * This tests the resetFacultySchedule method
+	 */
+	@Test
+	public void testResetFaculty() {
+		try {
+			manager.resetFacultySchedule(null);
+			fail();
+		} catch(IllegalArgumentException e) {
+			assertEquals("Illegal Action", e.getMessage());
+		}
+	}
+	
+	/**
+	 * This tests the removeFaculty method
+	 */
+	@Test
+	public void testRemoveFaculty() {
+		try {
+			manager.removeFacultyFromCourse(null, null);
+			fail();
+		} catch(IllegalArgumentException e) {
+			assertEquals("Illegal Action", e.getMessage());
+		}
+	}
+	
+	/**
+	 * This tests the addFculty method
+	 */
+	@Test
+	public void testAddFaculty() {
+		try {
+			manager.addFacultyToCourse(null, null);
+			fail();
+		} catch(IllegalArgumentException e) {
+			assertEquals("Illegal Action", e.getMessage());
+		}
+	}
 
 	/**
 	 * Tests RegistrationManager.enrollStudentInCourse()
