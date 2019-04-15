@@ -15,7 +15,8 @@ import edu.ncsu.csc216.pack_scheduler.user.Faculty;
 import edu.ncsu.csc216.pack_scheduler.util.LinkedList;
 
 /**
- * This class deals with the reading and writing to files in connection with Faculty
+ * This class deals with the reading and writing to files in connection with Faculty.
+ * 
  * @author Cameron, Matthew, and Michael
  *
  */
