@@ -92,18 +92,27 @@ public class LinkedListRecursive<E> {
 	 * @return true if the element was removed
 	 */
 	public boolean remove(E element) {
-		if(element == null) throw new NullPointerException();
-		if(isEmpty()) return false;
-		if(front.data.equals(element)) {
-			front = front.next;
-			size--;
+		try {
+			remove(indexOf(element, 0, front));
 			return true;
-		} else {
-			boolean b = front.remove(element);
-			size--;
-			return b;
+		} catch(Exception e) {
+			return false;
 		}
 	}
+	
+	/**
+	 * This is a private helper method for the remove element method
+	 * @param element the element
+	 * @param index the index
+	 * @param head the head of the list
+	 * @return the index of the element
+	 */
+	private int indexOf(E element, int index, ListNode head) {
+		if(head == null) return -1;
+		if(head.data.equals(element)) return index;
+		else return indexOf(element, index + 1, head.next);
+	}
+
 	/**
 	 * This method removes the element at the given index
 	 * @param index the index to remove the element of
@@ -129,9 +138,10 @@ public class LinkedListRecursive<E> {
 	 * @param element the new element 
 	 * @return the value that was replaced
 	 */
-	public E set(int index, E element) {
+	public E set(int index, E element) { 
 		if(index < 0 || index >= size) throw new IndexOutOfBoundsException();
 		if(element == null) throw new NullPointerException();
+		if(contains(element)) throw new IllegalArgumentException();
 		return front.set(index, element);
 	}
 	
