@@ -83,26 +83,7 @@ public class RegistrationManagerTest {
 
 	}
 	
-	/**
-	 * Tests the add faculty method
-	 */
-	@Test
-	public void testAddFaculty() {
-		try {
-			manager.addFacultyToCourse(null, null);
-		} catch(IllegalArgumentException e) {
-			// do nothing, test passes
-		}
-
-		
-		try {
-			manager.removeFacultyFromCourse(null, null);
-		} catch(IllegalArgumentException e) {
-			// do nothing, test passes
-		}
-		assertEquals(186276003, manager.hashCode());
-	}
-
+	
 	/**
 	 * Tests the login method.
 	 */
