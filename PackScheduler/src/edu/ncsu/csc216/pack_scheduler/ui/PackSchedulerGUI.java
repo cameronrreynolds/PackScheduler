@@ -56,7 +56,7 @@ public class PackSchedulerGUI {
 	/**
 	 * Constructs the PackSchedulerGUI and creates the menus and panels.
 	 */
-	public PackSchedulerGUI() {
+	public PackSchedulerGUI() { 
 		gui = new JFrame();
 		gui.setSize(800, 800);
 		gui.setLocation(50, 50);
@@ -173,7 +173,7 @@ public class PackSchedulerGUI {
 			
 			btnLogin = new JButton("Login");
 			c.gridx = 1;
-			c.gridy = 2;
+			c.gridy = 2; 
 			c.gridwidth = 1;
 			c.weightx = 0.5;
 			c.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -413,16 +413,42 @@ public class PackSchedulerGUI {
 		private static final long serialVersionUID = 1L;
 		/** Button to logout */
 		private JButton btnLogout;
+		/** FacultySchedulePanel */
+		private FacultySchedulePanel facultySchedulePanel;
+		
 		
 		/**
 		 * Temporary class for the FacultyPanel until we implement
 		 * that functionality.
 		 */
 		public FacultyPanel() {
+			super(new GridBagLayout());
+			
+			JPanel pnlButtons = new JPanel();
+			pnlButtons.setLayout(new GridLayout(1, 1));
 			btnLogout = new JButton("Logout");
 			btnLogout.addActionListener(this);
+			pnlButtons.add(btnLogout);
 			
-			add(btnLogout);
+			facultySchedulePanel = new FacultySchedulePanel();
+	
+			GridBagConstraints c = new GridBagConstraints();
+			c.gridx = 0;
+			c.gridy = 0;
+			c.gridwidth = 1;
+			c.weightx = 1;
+			c.anchor = GridBagConstraints.FIRST_LINE_START;
+			c.fill = GridBagConstraints.RELATIVE;
+			add(pnlButtons, c);
+			
+			c.gridx = 0;
+			c.gridy = 1;
+			c.gridwidth = 1;
+			c.weightx = 1;
+			c.weighty = 1;
+			c.anchor = GridBagConstraints.FIRST_LINE_START;
+			c.fill = GridBagConstraints.BOTH;
+			add(facultySchedulePanel, c);
 		}
 		
 		/**
